@@ -1,8 +1,8 @@
 package com.example.sharing_pictures.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -10,6 +10,10 @@ public class Role {
 
     @Id
     int id ;
+
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
     private Rolename role;
 
 

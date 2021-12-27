@@ -1,5 +1,7 @@
 package com.example.sharing_pictures.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,10 @@ public class Album {
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
     private Date date ;
+
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
     private Status status;
 
     @ManyToOne
