@@ -19,12 +19,12 @@ public class Test {
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-            entityManager = entityManagerFactory.createEntityManager();
-
-            System.out.println(entityManagerFactory);
             System.out.println(entityManager);
 
 
+            entityManager = entityManagerFactory.createEntityManager();
+
+            System.out.println(entityManagerFactory);
             System.out.println("Test done");
 
 
