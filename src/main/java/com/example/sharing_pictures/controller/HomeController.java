@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @WebServlet("")
 public class HomeController extends HttpServlet {
-    private static final String HOME_VUE = "/WEB-INF/index.jsp";
+    private static final String HOME_VUE = "/index.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

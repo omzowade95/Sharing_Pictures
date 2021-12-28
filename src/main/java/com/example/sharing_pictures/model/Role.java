@@ -17,7 +17,7 @@ public class Role{
     @Column(length = 60)
     private Rolename role;
 
-
-    @OneToMany(mappedBy = "role")
-    private List<Utilisateur> utilisateurs;
+    public Role(Rolename role) {
+        this.role = role;
+    }
 }

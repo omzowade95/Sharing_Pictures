@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
     
 <!-- header section starts      -->
-<c:import url="inc/header.jsp"/>
+<c:import url="WEB-INF/inc/header.jsp"/>
 
 <!-- header section ends-->
 
@@ -45,7 +45,7 @@
                     <a href="#" class="btn">Debutez maintenant</a>
                 </div>
                 <div class="image">
-                    <img src="../images/presentattion1.jpg" alt="">
+                    <img src="images/presentattion1.jpg" alt="">
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     <a href="#" class="btn">Debutez maintenant</a>
                 </div>
                 <div class="image">
-                    <img src="../images/presentattion1.jpg" alt="">
+                    <img src="images/presentattion1.jpg" alt="">
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
         <div class="box">
             <%--<a href="#" class="fas fa-heart"></a>--%>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-1.png" alt="">
+            <img src="images/dish-1.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -100,7 +100,7 @@
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-2.png" alt="">
+            <img src="images/dish-2.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -116,7 +116,7 @@
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-3.png" alt="">
+            <img src="images/dish-3.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -132,7 +132,7 @@
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-4.png" alt="">
+            <img src="images/dish-4.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -148,7 +148,7 @@
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-5.png" alt="">
+            <img src="images/dish-5.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -164,7 +164,7 @@
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="../images/dish-6.png" alt="">
+            <img src="images/dish-6.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -193,7 +193,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="../images/about-img.png" alt="">
+            <img src="images/about-img.png" alt="">
         </div>
 
         <div class="content">
@@ -234,7 +234,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-1.jpg" alt="">
+                <img src="images/menu-1.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -254,7 +254,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-2.jpg" alt="">
+                <img src="images/menu-2.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -274,7 +274,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-3.jpg" alt="">
+                <img src="images/menu-3.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -294,7 +294,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-4.jpg" alt="">
+                <img src="images/menu-4.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -314,7 +314,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-5.jpg" alt="">
+                <img src="images/menu-5.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -334,7 +334,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-6.jpg" alt="">
+                <img src="images/menu-6.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -354,7 +354,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-7.jpg" alt="">
+                <img src="images/menu-7.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -374,7 +374,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-8.jpg" alt="">
+                <img src="images/menu-8.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -394,7 +394,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="../images/menu-9.jpg" alt="">
+                <img src="images/menu-9.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -432,7 +432,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="../images/pic-1.png" alt="">
+                    <img src="images/pic-1.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -450,7 +450,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="../images/pic-2.png" alt="">
+                    <img src="images/pic-2.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -468,7 +468,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="../images/pic-3.png" alt="">
+                    <img src="images/pic-3.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -486,7 +486,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="../images/pic-4.png" alt="">
+                    <img src="images/pic-4.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -581,7 +581,7 @@
 
 <!-- loader part  -->
 <div class="loader-container">
-    <img src="../images/loader.gif" alt="">
+    <img src="images/loader.gif" alt="">
 </div>
 
 
@@ -608,7 +608,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="../js/script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>

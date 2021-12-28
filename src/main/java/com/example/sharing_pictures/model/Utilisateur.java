@@ -26,9 +26,13 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-
-
-
+    public Utilisateur(String nom, String prenom, String username, String password, Role role) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 }
 
 
