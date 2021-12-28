@@ -15,7 +15,7 @@
 
 </head>
 <body>
-
+    
 <!-- header section starts      -->
 
 <header>
@@ -105,7 +105,6 @@
 <!-- home section ends -->
 
 <!-- dishes section starts  -->
-
 <section class="dishes" id="dishes">
 
     <h3 class="sub-heading"> our dishes </h3>
@@ -536,7 +535,7 @@
         </div>
 
     </div>
-
+    
 </section>
 
 <!-- review section ends -->
@@ -583,11 +582,11 @@
         <div class="inputBox">
             <div class="input">
                 <span>your address</span>
-                <textarea name="" placeholder="enter your address" id="" cols="30" rows="10"></textarea>
+                <textarea name="" placeholder="enter your address" cols="30" rows="10"></textarea>
             </div>
             <div class="input">
                 <span>your message</span>
-                <textarea name="" placeholder="enter your message" id="messagee" cols="30" rows="10"></textarea>
+                <textarea name="" placeholder="enter your message" cols="30" rows="10"></textarea>
             </div>
         </div>
 
@@ -648,32 +647,6 @@
 </section>
 
 <!-- footer section ends -->
-
-<!-- loader part  -->
-<div class="loader-container">
-    <img src="images/loader.gif" alt="">
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
