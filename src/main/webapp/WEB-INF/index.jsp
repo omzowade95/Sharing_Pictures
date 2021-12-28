@@ -11,34 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
     
 <!-- header section starts      -->
-
-<header>
-
-    <a href="#" class="logo"><i class="fas fa-utensils"></i>resto.</a>
-
-    <nav class="navbar">
-        <a class="active" href="#home">home</a>
-        <a href="#dishes">dishes</a>
-        <a href="#about">about</a>
-        <a href="#menu">menu</a>
-        <a href="#review">review</a>
-        <a href="#order">order</a>
-    </nav>
-
-    <div class="icons">
-        <i class="fas fa-bars" id="menu-bars"></i>
-        <i class="fas fa-search" id="search-icon"></i>
-        <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
-    </div>
-
-</header>
+<c:import url="inc/header.jsp"/>
 
 <!-- header section ends-->
 
@@ -60,39 +39,29 @@
 
             <div class="swiper-slide slide">
                 <div class="content">
-                    <span>our special dish</span>
-                    <h3>spicy noodles</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
-                    <a href="#" class="btn">order now</a>
+                    <span>PhotoLab la vision du monde</span>
+                    <h3>Bienvenue sur PhotoLab.</h3>
+                    <p>PhotoLab est une plateforme de partage de photos en ligne</p>
+                    <a href="#" class="btn">Debutez maintenant</a>
                 </div>
                 <div class="image">
-                    <img src="images/home-img-1.png" alt="">
+                    <img src="../images/presentattion1.jpg" alt="">
                 </div>
             </div>
 
             <div class="swiper-slide slide">
                 <div class="content">
-                    <span>our special dish</span>
-                    <h3>fried chicken</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
-                    <a href="#" class="btn">order now</a>
+                    <span>Voir le monde autrement.</span>
+                    <h3>PhotoLab.</h3>
+                    <p>Voyagez avec vos amis en partageant en temps reel vos albums et photos</p>
+                    <a href="#" class="btn">Debutez maintenant</a>
                 </div>
                 <div class="image">
-                    <img src="images/home-img-2.png" alt="">
+                    <img src="../images/presentattion1.jpg" alt="">
                 </div>
             </div>
 
-            <div class="swiper-slide slide">
-                <div class="content">
-                    <span>our special dish</span>
-                    <h3>hot pizza</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
-                    <a href="#" class="btn">order now</a>
-                </div>
-                <div class="image">
-                    <img src="images/home-img-3.png" alt="">
-                </div>
-            </div>
+
 
         </div>
 
@@ -107,15 +76,15 @@
 <!-- dishes section starts  -->
 <section class="dishes" id="dishes">
 
-    <h3 class="sub-heading"> our dishes </h3>
-    <h1 class="heading"> popular dishes </h1>
+    <h3 class="sub-heading"> PHOTOS </h3>
+    <h1 class="heading"> photos recentes publiees</h1>
 
     <div class="box-container">
 
         <div class="box">
-            <a href="#" class="fas fa-heart"></a>
+            <%--<a href="#" class="fas fa-heart"></a>--%>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-1.png" alt="">
+            <img src="../images/dish-1.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -125,13 +94,13 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-2.png" alt="">
+            <img src="../images/dish-2.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -141,13 +110,13 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-3.png" alt="">
+            <img src="../images/dish-3.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -157,13 +126,13 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-4.png" alt="">
+            <img src="../images/dish-4.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -173,13 +142,13 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-5.png" alt="">
+            <img src="../images/dish-5.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -189,13 +158,13 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
         <div class="box">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-eye"></a>
-            <img src="images/dish-6.png" alt="">
+            <img src="../images/dish-6.png" alt="">
             <h3>tasty food</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -205,7 +174,7 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
             <span>$15.99</span>
-            <a href="#" class="btn">add to cart</a>
+            <a href="#" class="btn">Consulter</a>
         </div>
 
     </div>
@@ -218,19 +187,19 @@
 
 <section class="about" id="about">
 
-    <h3 class="sub-heading"> about us </h3>
-    <h1 class="heading"> why choose us? </h1>
+    <h3 class="sub-heading"> A Propos de Nous </h3>
+    <h1 class="heading"> Qui Sommes Nous? </h1>
 
     <div class="row">
 
         <div class="image">
-            <img src="images/about-img.png" alt="">
+            <img src="../images/about-img.png" alt="">
         </div>
 
         <div class="content">
-            <h3>best food in the country</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, sequi corrupti corporis quaerat voluptatem ipsam neque labore modi autem, saepe numquam quod reprehenderit rem? Tempora aut soluta odio corporis nihil!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nemo. Sit porro illo eos cumque deleniti iste alias, eum natus.</p>
+            <h3>Application de partage d'albums photos</h3>
+            <p> Cette plateforme permet de partager des photos entre amis!</p>
+
             <div class="icons-container">
                 <div class="icons">
                     <i class="fas fa-shipping-fast"></i>
@@ -258,14 +227,14 @@
 
 <section class="menu" id="menu">
 
-    <h3 class="sub-heading"> our menu </h3>
-    <h1 class="heading"> today's speciality </h1>
+    <h3 class="sub-heading"> ALBUMS </h3>
+    <h1 class="heading"> Les Albums recents </h1>
 
     <div class="box-container">
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-1.jpg" alt="">
+                <img src="../images/menu-1.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -285,7 +254,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-2.jpg" alt="">
+                <img src="../images/menu-2.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -305,7 +274,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-3.jpg" alt="">
+                <img src="../images/menu-3.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -325,7 +294,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-4.jpg" alt="">
+                <img src="../images/menu-4.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -345,7 +314,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-5.jpg" alt="">
+                <img src="../images/menu-5.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -365,7 +334,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-6.jpg" alt="">
+                <img src="../images/menu-6.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -385,7 +354,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-7.jpg" alt="">
+                <img src="../images/menu-7.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -405,7 +374,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-8.jpg" alt="">
+                <img src="../images/menu-8.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -425,7 +394,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/menu-9.jpg" alt="">
+                <img src="../images/menu-9.jpg" alt="">
                 <a href="#" class="fas fa-heart"></a>
             </div>
             <div class="content">
@@ -463,7 +432,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="images/pic-1.png" alt="">
+                    <img src="../images/pic-1.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -481,7 +450,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="images/pic-2.png" alt="">
+                    <img src="../images/pic-2.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -499,7 +468,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="images/pic-3.png" alt="">
+                    <img src="../images/pic-3.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -517,7 +486,7 @@
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>
                 <div class="user">
-                    <img src="images/pic-4.png" alt="">
+                    <img src="../images/pic-4.png" alt="">
                     <div class="user-info">
                         <h3>john deo</h3>
                         <div class="stars">
@@ -602,55 +571,44 @@
 
 <section class="footer">
 
-    <div class="box-container">
-
-        <div class="box">
-            <h3>locations</h3>
-            <a href="#">india</a>
-            <a href="#">japan</a>
-            <a href="#">russia</a>
-            <a href="#">USA</a>
-            <a href="#">france</a>
-        </div>
-
-        <div class="box">
-            <h3>quick links</h3>
-            <a href="#">home</a>
-            <a href="#">dishes</a>
-            <a href="#">about</a>
-            <a href="#">menu</a>
-            <a href="#">reivew</a>
-            <a href="#">order</a>
-        </div>
-
-        <div class="box">
-            <h3>contact info</h3>
-            <a href="#">+123-456-7890</a>
-            <a href="#">+111-222-3333</a>
-            <a href="#">shaikhanas@gmail.com</a>
-            <a href="#">anasbhai@gmail.com</a>
-            <a href="#">mumbai, india - 400104</a>
-        </div>
-
-        <div class="box">
-            <h3>follow us</h3>
-            <a href="#">facebook</a>
-            <a href="#">twitter</a>
-            <a href="#">instagram</a>
-            <a href="#">linkedin</a>
-        </div>
-
-    </div>
-
-    <div class="credit"> copyright @ 2021 by <span>mr. web designer</span> </div>
+    <div class="credit"> copyright @ 2021 by <span>ESP MASTER II TEAM</span> </div>
 
 </section>
 
 <!-- footer section ends -->
+<<<<<<< HEAD:src/main/webapp/index.jsp
+=======
+
+<!-- loader part  -->
+<div class="loader-container">
+    <img src="../images/loader.gif" alt="">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 4ef79a91425ef60775360b8bbf05b83b515237a4:src/main/webapp/WEB-INF/index.jsp
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
 
 </body>
 </html>
