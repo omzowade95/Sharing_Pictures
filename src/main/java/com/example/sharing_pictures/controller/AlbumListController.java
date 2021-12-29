@@ -7,16 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet("")
-public class HomeController extends HttpServlet {
-    private static final String HOME_VUE = "/index.jsp";
+@WebServlet("/albums")
+public class AlbumListController extends HttpServlet {
+    private static final String VUE_lIST_ALBUM = "/WEB-INF/albums.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("activeLogin", true);
-        request.getRequestDispatcher(HOME_VUE).forward(request, response);
+        request.setAttribute("activeAlbum", true);
+        request.getRequestDispatcher(VUE_lIST_ALBUM).forward(request, response);
     }
 }
