@@ -12,4 +12,12 @@ public class Theme {
     private int id ;
 
     private String libelle;
+
+    public Theme(){
+
+    }
+
+    public Theme(String libelle) {
+        this.libelle = libelle;
+    }
 }

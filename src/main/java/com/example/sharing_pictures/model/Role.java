@@ -6,9 +6,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Role {
+public class Role{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id ;
 
     @Enumerated(EnumType.STRING)
@@ -16,7 +17,7 @@ public class Role {
     @Column(length = 60)
     private Rolename role;
 
-
-    @OneToMany(mappedBy = "role")
-    private List<Utilisateur> utilisateurs;
+    public Role(Rolename role) {
+        this.role = role;
+    }
 }

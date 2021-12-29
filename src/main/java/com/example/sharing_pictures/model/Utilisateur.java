@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id ;
 
     private String nom ;
@@ -26,9 +26,13 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-
-
-
+    public Utilisateur(String nom, String prenom, String username, String password, Role role) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 }
 
 
