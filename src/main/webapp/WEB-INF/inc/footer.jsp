@@ -40,6 +40,6 @@
 
     </div>--%>
 
-    <div class="credit"> copyright @ 2021 by <span>ESP MASTER II TEAM</span> </div>
+    <div class="credit"> Buil with &heartsuit; &middot; Copyright &copy;  2021 <span>ESP MASTER II TEAM</span> </div>
 
 </section>

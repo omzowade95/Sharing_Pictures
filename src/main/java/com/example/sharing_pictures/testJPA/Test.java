@@ -1,6 +1,8 @@
 
 package com.example.sharing_pictures.testJPA;
 
+import com.example.sharing_pictures.DAO.Album.AlbumDAO;
+import com.example.sharing_pictures.model.Album;
 import com.example.sharing_pictures.model.Utilisateur;
 
 
@@ -19,15 +21,18 @@ public class Test {
         EntityManager entityManager = null;
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-            System.out.println(entityManager);
-
-
             entityManager = entityManagerFactory.createEntityManager();
 
-            System.out.println(entityManagerFactory);
-            System.out.println("Test done");
+            AlbumDAO ab = new AlbumDAO(entityManager);
 
+            Album a = ab.getAlbum(1);
+            System.out.println("okk");
+            System.out.println(a.toString());
+            System.out.println("okk");
 
+            //entityManager.close();
+           //
+            // *entityManagerFactory.close();
 
 
         }catch (Exception e){

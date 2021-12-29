@@ -571,13 +571,11 @@
 
 <section class="footer">
 
-    <div class="credit"> copyright @ 2021 by <span>ESP MASTER II TEAM</span> </div>
+    <c:import url="WEB-INF/inc/footer.jsp"/>
 
 </section>
 
-<!-- footer section ends -->
-<<<<<<< HEAD:src/main/webapp/index.jsp
-=======
+
 
 <!-- loader part  -->
 <div class="loader-container">
@@ -604,7 +602,6 @@
 
 
 
->>>>>>> 4ef79a91425ef60775360b8bbf05b83b515237a4:src/main/webapp/WEB-INF/index.jsp
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
