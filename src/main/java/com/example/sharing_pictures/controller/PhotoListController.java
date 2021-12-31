@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/Albums")
-public class Album  extends HttpServlet {
-
-    private static final String HOME_VUE = "/WEB-INF//album.jsp";
+@WebServlet("/photos")
+public class PhotoListController extends HttpServlet {
+    private static final String VUE_PHOTOS = "/WEB-INF/photos.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(HOME_VUE).forward(request, response);
+        request.setAttribute("activePhoto", true);
+        request.getRequestDispatcher(VUE_PHOTOS).forward(request, response);
     }
 }
