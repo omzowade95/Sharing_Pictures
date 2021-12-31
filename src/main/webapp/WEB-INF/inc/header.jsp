@@ -17,7 +17,7 @@
 <body>
 <header>
 
-    <a href="#" class="logo"><i class="fas fa-photo"></i> PhotoLab.</a>
+    <a href="#" class="logo"><i class="fas fa-photo"></i> PhotoLab</a>
 
     <nav class="navbar">
         <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>#home">Accueil</a>

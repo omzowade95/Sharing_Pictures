@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/albums")
+@WebServlet("/Albums")
 public class AlbumListController extends HttpServlet {
     private static final String VUE_lIST_ALBUM = "/WEB-INF/albums.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
