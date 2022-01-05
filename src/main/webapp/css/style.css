@@ -73,6 +73,7 @@ header{
     justify-content: space-between;
     z-index: 1000;
     box-shadow: var(--box-shadow);
+    font-family: "Arial Rounded MT Bold";
 }
 
 header .logo{

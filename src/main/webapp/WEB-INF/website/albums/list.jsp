@@ -1,6 +1,13 @@
 
+<c:set var="APP_ROOT" value="/Sharing_Pictures"></c:set>
+
+
+<head>
+    <title>SP | Albums</title>
+</head>
 <!-- header section starts      -->
-<c:import url="/WEB-INF/inc/header.jsp"/>
+<c:import url="/WEB-INF/website/inc/header.jsp"/>
+
 
 <!-- header section ends-->
 
@@ -18,9 +25,7 @@
 
 
     <h1 class="heading"> Liste des albums publiees</h1>
-    <a href="<c:url value="/"/> " class="btn"><i class="fa fa-arrow-left"></i> Retour Accueil</a>
     <div class="box-container">
-
         <div class="box">
             <%--<a href="#" class="fas fa-heart"></a>--%>
 
@@ -88,6 +93,17 @@
 </section>
 
 <!-- dishes section ends -->
+
+
+
+<form method="post" action="${APP_ROOT}/Albums" enctype="multipart/form-data">
+    Fichiers sélectionnés :
+    <input type="file" name="multiPartServlet" accept="image/*" multiple
+           onchange="readFilesAndDisplayPreview(this.files);" /> <br/>
+    <input type="submit" value="Upload" /> <br/>
+
+    <div id="list"></div>
+</form>
 
 <!-- about section starts  -->
 

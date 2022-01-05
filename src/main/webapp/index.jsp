@@ -1,6 +1,6 @@
 
 <!-- header section starts      -->
-<c:import url="WEB-INF/inc/header.jsp"/>
+<c:import url="WEB-INF/website/inc/header.jsp"/>
 
 <!-- header section ends-->
 
@@ -463,7 +463,7 @@
 
 <section class="footer">
 
-    <c:import url="WEB-INF/inc/footer.jsp"/>
+    <c:import url="WEB-INF/website/inc/footer.jsp"/>
 
 </section>
 

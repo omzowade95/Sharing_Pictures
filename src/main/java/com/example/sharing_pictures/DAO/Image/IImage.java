@@ -16,6 +16,8 @@ public interface IImage {
 
     public List<Image> listeImage();
 
+    public  List<Image> listeImageFromAlbum(int idA);
+
     //public List<Image> ();
 
     //public List<Album> getAlbumByStatus(Status status);

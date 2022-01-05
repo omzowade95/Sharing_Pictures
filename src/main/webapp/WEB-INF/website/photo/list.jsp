@@ -1,6 +1,9 @@
 
+<head>
+    <title>SP | Photos</title>
+</head>
 <!-- header section starts      -->
-<c:import url="/WEB-INF/inc/header.jsp"/>
+<c:import url="/WEB-INF/website/inc/header.jsp"/>
 
 <!-- header section ends-->
 
@@ -18,7 +21,6 @@
 
 
     <h1 class="heading"> Liste des photos publiees</h1>
-    <a href="<c:url value="/"/> " class="btn"><i class="fa fa-arrow-left"></i> Retour Accueil</a>
     <div class="box-container">
 
         <div class="box">
