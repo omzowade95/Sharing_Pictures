@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,22 +20,21 @@
 <body>
 <header>
 
-    <a href="#" class="logo"><i class="fas fa-photo"></i> PhotoLab</a>
+    <a href="#" class="logo"><i class="fas fa-photo"></i> Photolab</a>
 
     <nav class="navbar">
-        <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>#home">Accueil</a>
-        <a class="${ activeAlbum == true ? 'active' : ''}" href="<c:url value="/albums"/>#albums">Albums</a>
-        <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>#photos">Photos</a>
-        <a href="#menu">Inscription</a>
+        <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>">Accueil</a>
+        <a class="${ activeAlbum == true ? 'active' : ''}" href="<c:url value="/Albums"/>">Albums</a>
+        <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>">Photos</a>
         <a href="#review">Connexion</a>
         <a href="#about">A propos de nous</a>
     </nav>
 
     <div class="icons">
-        <i class="fas fa-bars" id="menu-bars"></i>
+        <i class="fas fa-" id="menu-bars"></i>
+        <i class="fab fa-facebook-square"></i>
         <i class="fas fa-search" id="search-icon"></i>
         <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-shopping-cart"></a>
     </div>
 
 </header>

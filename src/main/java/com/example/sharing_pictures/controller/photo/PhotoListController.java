@@ -1,4 +1,4 @@
-package com.example.sharing_pictures.controller;
+package com.example.sharing_pictures.controller.photo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @WebServlet("/photos")
 public class PhotoListController extends HttpServlet {
-    private static final String VUE_PHOTOS = "/WEB-INF/photos.jsp";
+    private static final String VUE_PHOTOS = "/WEB-INF/website/photo/list.jsp";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

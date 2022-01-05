@@ -2,7 +2,9 @@
 package com.example.sharing_pictures.testJPA;
 
 import com.example.sharing_pictures.DAO.Album.AlbumDAO;
+import com.example.sharing_pictures.DAO.Image.ImageDAO;
 import com.example.sharing_pictures.model.Album;
+import com.example.sharing_pictures.model.Image;
 import com.example.sharing_pictures.model.Utilisateur;
 
 
@@ -22,17 +24,16 @@ public class Test {
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
             entityManager = entityManagerFactory.createEntityManager();
+            AlbumDAO  al = new AlbumDAO(entityManager);
+           Album a = al.getAlbum(1) ;
+            ImageDAO img = new ImageDAO(entityManager);
 
-            AlbumDAO ab = new AlbumDAO(entityManager);
+            List<Image> l = img.listeImageFromAlbum(1);
 
-            Album a = ab.getAlbum(1);
-            System.out.println("okk");
-            System.out.println(a.toString());
-            System.out.println("okk");
-
-            //entityManager.close();
-           //
-            // *entityManagerFactory.close();
+            for (Image i:
+                  l) {
+                System.out.println(i.toString());
+            }
 
 
         }catch (Exception e){

@@ -5,6 +5,7 @@ import com.example.sharing_pictures.model.Image;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ImageDAO implements IImage{
@@ -62,5 +63,14 @@ public class ImageDAO implements IImage{
     public List<Image> listeImage() {
         Query query = entityManager.createQuery("select a from Image a", Image.class);
         return query.getResultList();
+    }
+
+    @Override
+    public  List<Image> listeImageFromAlbum(int idA) {
+        List results =entityManager.createQuery("SELECT r FROM Image  r WHERE r.album.id = :idA", Image.class)
+                        .setParameter("idA", idA).getResultList();
+       // results = query.getResultList();
+        return results;
+
     }
 }
