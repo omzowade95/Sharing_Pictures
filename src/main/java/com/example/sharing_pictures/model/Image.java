@@ -13,17 +13,15 @@ public class Image {
     private String description ;
     private int hauteur;
     private int largeur;
-    @Temporal(TemporalType.DATE)
-    private Date dateCreation;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateMAJ;
+    private String dateCreation;
+    private String dateMAJ;
     private String location;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
 
-    public Image(String titre, String description, int hauteur, int largeur, Date dateCreation, Date dateMAJ, String location, Album album) {
+    public Image(String titre, String description, int hauteur, int largeur, String dateCreation, String dateMAJ, String location, Album album) {
         this.description = description;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -78,19 +76,19 @@ public class Image {
         this.largeur = largeur;
     }
 
-    public Date getDateCreation() {
+    public String getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
+    public void setDateCreation(String dateCreation) {
         this.dateCreation = dateCreation;
     }
 
-    public Date getDateMAJ() {
+    public String getDateMAJ() {
         return dateMAJ;
     }
 
-    public void setDateMAJ(Date dateMAJ) {
+    public void setDateMAJ(String dateMAJ) {
         this.dateMAJ = dateMAJ;
     }
 

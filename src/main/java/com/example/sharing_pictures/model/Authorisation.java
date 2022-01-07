@@ -19,8 +19,8 @@ public class Authorisation {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    public Authorisation(String code, Album album, Utilisateur utilisateur) {
-        this.code = code;
+    public Authorisation(Album album, Utilisateur utilisateur) {
+       // this.code = code;
         this.album = album;
         this.utilisateur = utilisateur;
     }

@@ -1,10 +1,7 @@
 
-<c:set var="APP_ROOT" value="/Sharing_Pictures"></c:set>
-
-
 <head>
     <title>SP | Albums Ajouts</title>
-    <link rel="stylesheet" href="${APP_ROOT}/css/formstyle.css">
+    <link rel="stylesheet" href="<c:url value="/css/formstyle.css" />">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>

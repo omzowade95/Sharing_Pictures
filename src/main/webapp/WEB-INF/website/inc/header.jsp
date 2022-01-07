@@ -1,9 +1,6 @@
 
 
 
-<c:set var="APP_ROOT" value="/Sharing_Pictures"></c:set>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="${APP_ROOT}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css" />">
 
 </head>
 <body>

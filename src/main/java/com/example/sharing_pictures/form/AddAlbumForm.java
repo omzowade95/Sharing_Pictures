@@ -1,21 +1,19 @@
 package com.example.sharing_pictures.form;
 
 import com.example.sharing_pictures.DAO.Album.AlbumDAO;
-import com.example.sharing_pictures.model.Album;
-import com.example.sharing_pictures.model.Status;
-import com.example.sharing_pictures.model.Theme;
-import com.example.sharing_pictures.model.Utilisateur;
+import com.example.sharing_pictures.DAO.Authorisation.AuthorisationDAO;
+import com.example.sharing_pictures.DAO.Image.ImageDAO;
+import com.example.sharing_pictures.DAO.Theme.ThemeDAO;
+import com.example.sharing_pictures.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
-import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class AddAlbumForm {
@@ -31,6 +29,9 @@ public class AddAlbumForm {
     private AlbumDAO albumDAO;
     private EntityManagerFactory entityManagerFactory = null;
     private EntityManager entityManager = null;
+    private ThemeDAO themeDAO;
+    private ImageDAO imageDAO;
+    private AuthorisationDAO authorisationDAO;
 
     public AddAlbumForm(HttpServletRequest request, HttpSession session){
         this.erreurs = new HashMap<>();
@@ -41,34 +42,37 @@ public class AddAlbumForm {
     public boolean add(){
         entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
         entityManager = entityManagerFactory.createEntityManager();
+        albumDAO = new AlbumDAO(entityManager);
+        themeDAO = new ThemeDAO(entityManager);
+        imageDAO = new ImageDAO(entityManager);
+        authorisationDAO = new AuthorisationDAO(entityManager);
 
-        String uploadPath="";
+        //String uploadPath="";
         String nom = getParameter(CHAMP_NOM);
-        String theme = getParameter(CHAMP_THEME);
-       // Status status = (Status) getParameter(CHAMP_STATUS);
-        List<String> images = new ArrayList<>();
-        try {
-            for ( Part part : request.getParts() ) {
-                String fileName = getFileName( part );
-                String fullPath = uploadPath + File.separator + fileName;
-                part.write( fullPath );
-                System.out.println(fullPath);
-                images.add(fullPath);
-                System.out.println("okkkk");
+        Theme theme = themeDAO.getTheme(CHAMP_THEME);
+        if (theme == null){
+            themeDAO.add(new Theme(CHAMP_THEME));
+            theme = themeDAO.getTheme(CHAMP_THEME);
+        }
+        Status status = Status.valueOf(CHAMP_STATUS);
+        List<Image> images = (List<Image>) request.getAttribute("images");
 
-            }
-            Date date = new Date();
-
-            //Album album = new Album(nom,date.getTime(),,(Utilisateur) session.getAttribute("utilisateur"),new Theme(theme));
-            albumDAO = new AlbumDAO(entityManager);
-            //albumDAO.add();
-        } catch (Exception e) {
-            e.printStackTrace();
+        Album a = new Album(nom,LocalDate.now().toString(),status,(Utilisateur)session.getAttribute("utilisateur"),theme);
+        albumDAO.add(a);
+        for (Image img: images) {
+            img.setAlbum(a);
+            img.setDateCreation(LocalDate.now().toString());
+            img.setDateMAJ(LocalDate.now().toString());
+            imageDAO.add(img);
         }
 
-
-
-
+        if (status.equals("PRIVATE")){
+            List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("authorisation");
+            for (Utilisateur u : autorise) {
+                Authorisation at = new Authorisation(a,u);
+                authorisationDAO.add(at);
+            }
+        }
         return false;
     }
 

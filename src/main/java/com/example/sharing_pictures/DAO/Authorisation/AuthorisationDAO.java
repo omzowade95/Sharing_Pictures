@@ -1,36 +1,31 @@
-package com.example.sharing_pictures.DAO.Album;
+package com.example.sharing_pictures.DAO.Authorisation;
 
 import com.example.sharing_pictures.model.Album;
-import com.example.sharing_pictures.model.Status;
+import com.example.sharing_pictures.model.Authorisation;
+import com.example.sharing_pictures.model.Theme;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
-public class AlbumDAO implements IAlbum {
+public class AuthorisationDAO implements IAuthorisation{
 
     private final EntityManager entityManager ;
 
-    public AlbumDAO(EntityManager entityManager) {
+    public AuthorisationDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
 
     @Override
-    public void add(Album a) {
-
+    public void add(Authorisation a) {
         entityManager.getTransaction().begin();
         entityManager.persist(a);
         entityManager.getTransaction().commit();
-
-        //this.entityManager.close();
-
     }
 
-
-
     @Override
-    public boolean update(Album a) {
-
+    public boolean update(Authorisation a) {
         Boolean bool = false;
         try {
             entityManager.getTransaction().begin();
@@ -61,32 +56,8 @@ public class AlbumDAO implements IAlbum {
     }
 
     @Override
-    public List<Album> listeAlbum() {
-
-        Query query = entityManager.createQuery("select a from Album a", Album.class);
+    public List<Authorisation> listeAuth(int idAlbum) {
+        Query query = entityManager.createQuery("select a from Authorisation a where a.album.id = :idAlbum", Authorisation.class).setParameter("idAlbum",idAlbum);
         return query.getResultList();
     }
-
-    @Override
-    public List<Album> getAlbumByStatus(Status status) {
-
-       Query query  = entityManager.createQuery("SELECT r FROM Album r WHERE r.status = :status", Album.class)
-                    .setParameter("status", status);
-
-        return query.getResultList();
-    }
-
-    @Override
-    public Album getAlbum(int id) {
-
-        Album album = entityManager.find(Album.class, id);
-        if (album == null) {
-            return null ;
-        }
-        return album;
-    }
-
-
-
-
 }

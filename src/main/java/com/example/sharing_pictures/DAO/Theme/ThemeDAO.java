@@ -1,36 +1,31 @@
-package com.example.sharing_pictures.DAO.Album;
+package com.example.sharing_pictures.DAO.Theme;
 
 import com.example.sharing_pictures.model.Album;
-import com.example.sharing_pictures.model.Status;
+import com.example.sharing_pictures.model.Theme;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
-public class AlbumDAO implements IAlbum {
+public class ThemeDAO implements ITheme{
 
     private final EntityManager entityManager ;
 
-    public AlbumDAO(EntityManager entityManager) {
+    public ThemeDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-
     @Override
-    public void add(Album a) {
-
+    public void add(Theme a) {
         entityManager.getTransaction().begin();
         entityManager.persist(a);
         entityManager.getTransaction().commit();
 
-        //this.entityManager.close();
-
+       // this.entityManager.close();
     }
 
-
-
     @Override
-    public boolean update(Album a) {
-
+    public boolean update(Theme a) {
         Boolean bool = false;
         try {
             entityManager.getTransaction().begin();
@@ -61,32 +56,17 @@ public class AlbumDAO implements IAlbum {
     }
 
     @Override
-    public List<Album> listeAlbum() {
-
-        Query query = entityManager.createQuery("select a from Album a", Album.class);
+    public List<Theme> listeTheme() {
+        Query query = entityManager.createQuery("select a from Theme a", Theme.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Album> getAlbumByStatus(Status status) {
-
-       Query query  = entityManager.createQuery("SELECT r FROM Album r WHERE r.status = :status", Album.class)
-                    .setParameter("status", status);
-
-        return query.getResultList();
-    }
-
-    @Override
-    public Album getAlbum(int id) {
-
-        Album album = entityManager.find(Album.class, id);
-        if (album == null) {
+    public Theme getTheme(String libelle) {
+        Theme theme = entityManager.find(Theme.class, libelle);
+        if (theme == null) {
             return null ;
         }
-        return album;
+        return theme;
     }
-
-
-
-
 }
