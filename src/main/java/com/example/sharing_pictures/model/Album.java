@@ -20,7 +20,6 @@ public class Album {
     private Date date ;
 
     @Enumerated(EnumType.STRING)
-    @NaturalId
     @Column(length = 60)
     private Status status;
 
@@ -44,6 +43,7 @@ public class Album {
     public Album() {
 
     }
+
 
     @Override
     public String toString() {

@@ -18,73 +18,30 @@
 <br/><br/><br/><br/>
 <!-- dishes section starts  -->
 <section class="dishes" id="photos">
+    <br><br><br>
 
-
-    <h1 class="heading"> Liste des photos publiees</h1>
+    <h1 class="heading"> Liste des photos publiques</h1>
     <div class="box-container">
+        
+<c:choose>
+    <c:when test="${!empty requestScope.imageList}">
+         <c:forEach items="${requestScope.imageList}" var="img">
+            <div class="box">
+                <%--<a href="#" class="fas fa-heart"></a>--%>
 
-        <div class="box">
-            <%--<a href="#" class="fas fa-heart"></a>--%>
-
-            <img src="images/dish-1.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
+                <img src="images/dish-1.png" alt="">
+                <h3><c:out value="${img.titre}"></c:out></h3>
+                <div class="stars">
+                    <span><c:out value="${img.description}"></c:out></span>
+                </div>
             </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-2.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-3.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-4.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-5.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-6.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-
+         </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <h3>No photo available</h3>
+    </c:otherwise>
+</c:choose>
+        
     </div>
     <a href="#" class="btn">Consulter toutes les photos</a>
 </section>
@@ -93,40 +50,6 @@
 
 <!-- about section starts  -->
 
-<section class="about" id="about">
-
-    <h3 class="sub-heading"> A Propos de Nous </h3>
-    <h1 class="heading"> Qui Sommes Nous? </h1>
-
-    <div class="row">
-
-        <div class="image">
-            <img src="images/about-img.png" alt="">
-        </div>
-
-        <div class="content">
-            <h3>Application de partage d'albums photos</h3>
-            <p> Cette plateforme permet de partager des photos entre amis!</p>
-
-            <div class="icons-container">
-                <div class="icons">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span>Partage</span>
-                </div>
-                <div class="icons">
-                    <i class="fas fa-dollar-sign"></i>
-                    <span>Creativite</span>
-                </div>
-                <div class="icons">
-                    <i class="fas fa-headset"></i>
-                    <span>Innovation</span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</section>
 
 <!-- about section ends -->
 
@@ -143,10 +66,6 @@
 <!-- footer section ends -->
 
 
-<!-- loader part  -->
-<div class="loader-container">
-    <img src="images/loader.gif" alt="">
-</div>
 
 
 
