@@ -15,12 +15,10 @@ public class Album {
 
     private String nom;
 
-    @Basic
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date ;
+
+    private String date ;
 
     @Enumerated(EnumType.STRING)
-    @NaturalId
     @Column(length = 60)
     private Status status;
 
@@ -33,7 +31,7 @@ public class Album {
     private Theme theme;
 
 
-    public Album(String nom, Date date, Status status, Utilisateur utilisateur, Theme theme) {
+    public Album(String nom, String date, Status status, Utilisateur utilisateur, Theme theme) {
         this.nom = nom;
         this.date = date;
         this.status = status;
@@ -44,6 +42,7 @@ public class Album {
     public Album() {
 
     }
+
 
     @Override
     public String toString() {
@@ -73,11 +72,11 @@ public class Album {
         this.nom = nom;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

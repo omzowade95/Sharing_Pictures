@@ -473,11 +473,11 @@
 >>>>>>> 0a15b3aeb55d7020cd5920309150d44cb05f09c8
 
 
-<!-- loader part  -->
+<!-- loader part
 <div class="loader-container">
     <img src="images/loader.gif" alt="">
 </div>
-
+-->
 
 
 

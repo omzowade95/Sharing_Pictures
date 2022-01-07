@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css" />">
 
 </head>
 <body>
@@ -26,8 +26,12 @@
         <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>">Accueil</a>
         <a class="${ activeAlbum == true ? 'active' : ''}" href="<c:url value="/Albums"/>">Albums</a>
         <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>">Photos</a>
+        <a class="${ activeAbout == true ? 'active' : ''}" href="<c:url value="/About"/>">A propos de nous</a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
         <a href="#review">Connexion</a>
-        <a href="#about">A propos de nous</a>
+
     </nav>
 
     <div class="icons">

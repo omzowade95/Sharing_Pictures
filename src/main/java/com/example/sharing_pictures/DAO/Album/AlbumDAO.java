@@ -22,7 +22,7 @@ public class AlbumDAO implements IAlbum {
         entityManager.persist(a);
         entityManager.getTransaction().commit();
 
-        this.entityManager.close();
+        //this.entityManager.close();
 
     }
 
