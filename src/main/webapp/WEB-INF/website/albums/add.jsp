@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="<c:url value="/css/formstyle.css" />">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
 </head>
 <!-- header section starts      -->
 <c:import url="/WEB-INF/website/inc/header.jsp"/>
@@ -32,21 +33,33 @@
                         <h3 class="txt">Ajouter un nouveau album</h3>
                         <form class="form-card"  method="post" action="${APP_ROOT}/Albums/add" onsubmit="event.preventDefault()">
                             <div class="row justify-content-between text-left">
-                                <div class="form-group col-sm-6 flex-column d-flex">
-                                    <label class="form-control-label px-3">Theme<span class="text-danger"> *</span></label> <input type="text"  name="theme" placeholder="Enter le theme" >
+                                <div class="form-group col-md-6 flex-column d-flex">
+                                    <label class="form-control-label col-md-3 px-3">Theme<span class="text-danger"> *</span></label>
+                                    <input type="text"  name="theme" placeholder="Enter le theme" >
                                 </div>
-                                <div class="form-group col-sm-6 flex-column d-flex">
-                                    <label class="form-control-label px-3">Nom de l'album <span class="text-danger"> *</span></label> <input type="text"  name="nomAlbum" placeholder="Enter le nom de l'album">
+                                <div class="form-group col-md-6 flex-column d-flex">
+                                    <label class="form-control-label col-md-3 px-3">Nom de l'album <span class="text-danger"> *</span></label> <input type="text"  name="nomAlbum" placeholder="Enter le nom de l'album">
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
-                                <div class="form-group col-sm-6 flex-column d-flex">
-                                    <label class="form-control-label px-3">Status :<span class="text-danger"> *</span></label>
+                                <div class="form-group col-md-6 flex-column d-flex">
+                                    <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
                                     <input type="checkbox" id="private" name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
                                     <input type="checkbox" id="public" name="statue" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
                                 </div>
-                                <div class="form-group col-sm-6 flex-column d-flex">
-                                    <label class="form-control-label px-3">Image :<span class="text-danger"> *</span></label> <input type="file" id="img" name="image" multiple placeholder="Choisir les image de l'album" onchange="readFilesAndDisplayPreview(this.files);" >
+                                <div class="form-inline col-md-9 ">
+                                  <!--  <label class="form-control-label px-3">Image :<span class="text-danger"> *</span></label> <input type="file" id="img" name="image" multiple placeholder="Choisir les image de l'album" onchange="readFilesAndDisplayPreview(this.files);" >-->
+                                    <div class="form-group albumInfo" id="input">
+                                        <label for="">Image: <sup class="text text-danger">*</sup></label> &nbsp;
+                                        <input type="file" name="images[files][]" class="elem">
+                                        <input type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
+                                        <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
+
+                                    </div>
+                                    <br/><br/>
+                                    <button type="button" style="background-color: green; color: white" class="btn btn-warning" id="addImages">Ajouter <i class="fa fa-plus"></i></button>
+                                    <button type="button" style="" class=" btn-danger" id="remove">Retirer <i class="fa fa-minus"></i></button>
+                                </div>
                                 </div>
                             </div>
 
@@ -143,4 +156,38 @@
 </script>
 
 </body>
+<script>
+    $(document).ready(function(){
+        var id = 1;
+        $('#addImages').on('click',function(){
+            var numq3 = $('.albumInfo').length;
+            var NewNumq3 = numq3 + 1;
+            if(numq3 <= 5){
+                var newElement3 = $('.albumInfo:last').clone().attr('id', 'input'  + NewNumq3);
+                newElement3.children(':first').attr('id', 'elem' + NewNumq3).val(null);
+                $('.albumInfo:last').after(newElement3);
+                $('#remove').prop('disabled', false);
+            }else{
+                alert("l'album ne peut pas contenir plus de 5 photos")
+            }
+
+            // $('#partieq1').append('<br/><textarea type="text" required placeholder="Renseignez la partie" name="partie1" class="form-control form-control-md col-md-6" value=""></textarea> &nbsp; &nbsp;')
+        })
+        $('#remove').on('click', function(){
+            var num = $('.albumInfo').length;
+            $('#input' + num).remove();//retirer le dernier element
+            //activer bouton "ajouter"
+            $('#addImages').prop('disabled', false);
+            //si seulemnt un elemnt reste , desactiver le bouton "retirer"
+
+            if(num - 1 == 1){
+                $('#remove').prop('disabled', true);
+            }
+
+        });
+
+
+    })
+</script>
+
 </html>
