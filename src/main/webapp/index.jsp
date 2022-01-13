@@ -467,10 +467,6 @@
 
 </section>
 
-<<<<<<< HEAD
-=======
-<!-- footer section ends -->
->>>>>>> 0a15b3aeb55d7020cd5920309150d44cb05f09c8
 
 
 <!-- loader part
@@ -498,10 +494,6 @@
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a15b3aeb55d7020cd5920309150d44cb05f09c8
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
