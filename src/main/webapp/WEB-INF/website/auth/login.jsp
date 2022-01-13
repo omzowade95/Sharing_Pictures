@@ -29,7 +29,7 @@
             <input type="password" name="pass" placeholder="Mot de passe">
         </div>
 
-        <p class="inscription">Je n'ai pas de <span>compte</span>. Je m'en <span>crée</span> un.</p>
+        <p class="inscription">Je n'ai pas de <span>compte</span>. Je m'en <span><a href="<c:url value="/incription" />">Créer</a></span> un.</p>
         <div align="center">
             <button type="submit">Se connecter</button>
         </div>

@@ -1,4 +1,4 @@
-package com.example.sharing_pictures.controller.login;
+package com.example.sharing_pictures.controller.forms;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
