@@ -19,7 +19,7 @@ import java.util.*;
 public class AddAlbumForm {
 
     private static final String CHAMP_THEME="theme";
-    private static final String CHAMP_NOM="nom";
+    private static final String CHAMP_NOM="nomAlbum";
     private static final String CHAMP_STATUS="statue";
     private static final String CHAMP_IMAGE="image";
 
@@ -46,6 +46,7 @@ public class AddAlbumForm {
         themeDAO = new ThemeDAO(entityManager);
         imageDAO = new ImageDAO(entityManager);
         authorisationDAO = new AuthorisationDAO(entityManager);
+        session = request.getSession();
 
         //String uploadPath="";
         String nom = getParameter(CHAMP_NOM);
