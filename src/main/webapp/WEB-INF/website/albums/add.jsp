@@ -193,10 +193,23 @@
             }
         })
         //lancer la recherche
-        $("#searchUser").on("click", function(){
+        $("#searchInput").on("keyup", function(){
             var searchInput = $("#searchInput").val();
+            $.ajax(
+                {
+                    type: 'GET',
+                    data: {username: searchInput},
+                    url: '<c:url value="searchUser"></c:url>',
+                    success: function (result) {
+                        console.log(result.utilisateurJsonString)
 
-            $("#userFound").html(searchInput)
+                        if(result != null){
+                            console.log(result.utilisateurJsonString.username)
+                        }
+                    }
+                }
+            )
+           // $("#userFound").html(searchInput)
         })
 
 
