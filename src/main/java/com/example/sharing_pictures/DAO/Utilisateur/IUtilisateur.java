@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IUtilisateur {
 
-    public void addUser(Utilisateur utilisateur, EntityManager entityManager);
+    public void addUser(Utilisateur utilisateur);
     public boolean updateUser(UtilisateurDAO utilisateurDAO);
-    public boolean deleteUser(int id);
+    public  void deleteUser(Utilisateur utilisateur);
 
-    public List<UtilisateurDAO> listUser();
+    public List<Utilisateur> listUser();
     public UtilisateurDAO getUser(int id);
 }

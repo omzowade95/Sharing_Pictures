@@ -5,17 +5,21 @@ import com.example.sharing_pictures.model.Utilisateur;
 
 import javax.persistence.*;
 import javax.swing.text.html.parser.Entity;
+import java.util.ArrayList;
 import java.util.List;
 @PersistenceContext( unitName = "sharing_pictures" )
 public class UtilisateurDAO implements IUtilisateur {
     private EntityManager  em;
 
-    public UtilisateurDAO(){}
-    public UtilisateurDAO(EntityManager entityManager){
-        this.em = entityManager;
+    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
+
+    public UtilisateurDAO(){
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+        this.entityManager = entityManagerFactory.createEntityManager();
     }
     @Override
-    public void addUser(Utilisateur utilisateur , EntityManager entityManager) {
+    public void addUser(Utilisateur utilisateur) {
         entityManager.getTransaction().begin();
         entityManager.persist(utilisateur);
         entityManager.getTransaction().commit();
@@ -27,16 +31,33 @@ public class UtilisateurDAO implements IUtilisateur {
     }
 
     @Override
-    public boolean deleteUser(int id) {
-        return false;
+    public void deleteUser(Utilisateur utilisateur) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(utilisateur);
+        entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<UtilisateurDAO> listUser() {
+    public List<Utilisateur> listUser() {
+        List<Utilisateur> utilisateurList = new ArrayList<>();
+        entityManager.getTransaction().begin();
+        utilisateurList = entityManager.createQuery("SELECT i FROM Utilisateur i ").getResultList();
+        entityManager.getTransaction().commit();
 
-        return null;
+        return utilisateurList;
     }
+    public boolean searchUsername(String username){
+        List<String> usernames = new ArrayList<>();
+        entityManager.getTransaction().begin();
+        usernames = entityManager.createQuery("SELECT u.username FROM Utilisateur u").getResultList();
+        entityManager.getTransaction().commit();
 
+        for (String login : usernames){
+            if(username.equals(login))
+                return true;
+        }
+        return false;
+    }
     @Override
     public UtilisateurDAO getUser(int id) {
         return null;
