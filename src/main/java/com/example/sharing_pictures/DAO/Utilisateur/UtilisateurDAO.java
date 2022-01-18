@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 @PersistenceContext( unitName = "sharing_pictures" )
 public class UtilisateurDAO implements IUtilisateur {
-    private EntityManager  em;
 
     private EntityManager entityManager;
     private EntityManagerFactory entityManagerFactory;
 
+    public UtilisateurDAO(EntityManager entityManager){
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+        this.entityManager = entityManagerFactory.createEntityManager();
+    }
     public UtilisateurDAO(){
         this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
         this.entityManager = entityManagerFactory.createEntityManager();
@@ -66,15 +69,13 @@ public class UtilisateurDAO implements IUtilisateur {
     public Utilisateur getUser(String username)
     {
             Utilisateur utilisateur = null;
-            entityManager.getTransaction().begin();
             Query query  = entityManager.createQuery("SELECT u FROM Utilisateur u WHERE u.username =:username");
             query.setParameter("username", username).getSingleResult();
-            entityManager.getTransaction().commit();
             try{
                 utilisateur = (Utilisateur) query.getSingleResult();
                 System.out.println("Utilisateur: " + utilisateur.getPrenom());
             }catch (NoResultException e){
-                return null;
+                utilisateur = null;
             }
             catch (Exception e){
 

@@ -14,12 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/Albums/searchUser")
 public class SearchUserController extends HttpServlet {
-    private Gson gson;
+
     private EntityManagerFactory entityManagerFactory = null;
     private EntityManager entityManager = null;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,14 +32,16 @@ public class SearchUserController extends HttpServlet {
         entityManager = entityManagerFactory.createEntityManager();
 
         String username = request.getParameter("username");
-        UtilisateurDAO dao = new UtilisateurDAO();
+        UtilisateurDAO dao = new UtilisateurDAO(entityManager);
         Utilisateur u = dao.getUser(username);
-        String utilisateurJsonString = new Gson().toJson(u);
 
-        PrintWriter out = response.getWriter();
+        //String gson = new Gson().toJson(u);
+        //String utilisateurTrouve = gson.toJson(u);
+        //System.out.println("Server: pass: " + utilisateurTrouve);
         response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        out.print(utilisateurJsonString.toString());
-        out.flush();
+       // response.setCharacterEncoding("UTF-8");
+        String user = Integer.toString(u.getId());
+        //System.out.println("response: " + user);
+       response.getWriter().write(user);
     }
 }

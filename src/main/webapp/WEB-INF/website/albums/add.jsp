@@ -56,7 +56,7 @@
                                         <input type="file" name="images[files][]" class="elem">
                                         <input type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
                                         <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
-
+                                        <input type="hidden" name="autorisations" id="autorisations"/>
                                     </div>
                                     <br/><br/>
                                     <button type="button" style="background-color: green; color: white" class="btn btn-warning" id="addImages">Ajouter <i class="fa fa-plus"></i></button>
@@ -193,7 +193,9 @@
             }
         })
         //lancer la recherche
-        $("#searchInput").on("keyup", function(){
+        var autorisationsId = new Array();
+        var autorisationsName = new Array();
+        $('#searchUser').on('click', function () {
             var searchInput = $("#searchInput").val();
             $.ajax(
                 {
@@ -201,15 +203,20 @@
                     data: {username: searchInput},
                     url: '<c:url value="searchUser"></c:url>',
                     success: function (result) {
-                        console.log(result.utilisateurJsonString)
-
+                        console.log(result)
+                        $("#userFound").html("");
                         if(result != null){
-                            console.log(result.utilisateurJsonString.username)
+                            autorisationsId.push(result.username)
+                            autorisationsName.push(searchInput)
+                            $("#userFound").html("<h3>" + autorisationsName + "</h3>");
+                            //console.log(autorisations)
+                            $('#autorisations').val(autorisationsId)
+                        }else if(result == null || result == undefined || result == ""){
+                            $("#userFound").html("Utilisateur non trouvé !!!")
                         }
                     }
                 }
             )
-           // $("#userFound").html(searchInput)
         })
 
 
