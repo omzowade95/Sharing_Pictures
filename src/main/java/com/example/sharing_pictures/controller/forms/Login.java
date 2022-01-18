@@ -12,6 +12,7 @@ import java.io.IOException;
 @WebServlet("/login")
 public class Login extends HttpServlet {
     private static final String VUE_LOGIN = "/WEB-INF/website/auth/login.jsp";
+    private static final String HOME_VUE = "/index.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,7 +23,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AuthenticationForm authenticationForm = new AuthenticationForm(request);
         if (authenticationForm.userAuth())
-            response.sendRedirect(request.getContextPath() + "");
+            this.getServletContext().getRequestDispatcher(HOME_VUE).forward(request,response);
         else
             this.getServletContext().getRequestDispatcher(VUE_LOGIN).forward(request,response);
     }

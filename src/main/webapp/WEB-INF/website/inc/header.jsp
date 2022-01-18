@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +24,14 @@
         <a class="${ activeAlbum == true ? 'active' : ''}" href="<c:url value="/Albums"/>">Albums</a>
         <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>">Photos</a>
         <a class="${ activeAbout == true ? 'active' : ''}" href="<c:url value="/About"/>">A propos de nous</a>
-        <a href="#about"></a>
-        <a href="#about"></a>
-        <a href="#about"></a>
-        <a href="<c:url value="/login" />">Connexion</a>
-
+        <c:choose>
+            <c:when test="${!empty user}">
+                <a href="<c:url value="/logout" />">Déconnexion</a>
+            </c:when>
+            <c:otherwise>
+                <a href="<c:url value="/login" />">Connexion</a>
+            </c:otherwise>
+        </c:choose>
     </nav>
 
     <div class="icons">
