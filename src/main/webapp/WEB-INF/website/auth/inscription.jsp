@@ -14,7 +14,7 @@
                 Echec de l'authentification : login et/ou mot de passe incorrect
             </div>
         </c:if>
-        <form  method="post">
+        <form  method="post" action="<c:url value="/incription" />">
             <h1>Créer Un compte</h1>
             <div class="social-media">
                 <p><i class="fab fa-google"></i></p>
@@ -29,7 +29,10 @@
                 <input type="text" name="username" placeholder="Username" />
                 <input type="password" name="pass" placeholder="Mot de passe">
                 <input type="password" name="passConfirm" placeholder="Confirmation mot de passe">
-                <input type="text" name="role" placeholder="Role">
+                <select name="role" >
+                    <option value="1">ADMIN</option>
+                    <option value="2">USER</option>
+                </select>
             </div>
             <div align="center">
                 <button type="submit">Valider</button>

@@ -1,5 +1,7 @@
 package com.example.sharing_pictures.controller.forms;
 
+import com.example.sharing_pictures.form.Users.AuthenticationForm;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,5 +16,14 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher(VUE_LOGIN).forward(request,response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AuthenticationForm authenticationForm = new AuthenticationForm(request);
+        if (authenticationForm.userAuth())
+            response.sendRedirect(request.getContextPath() + "");
+        else
+            this.getServletContext().getRequestDispatcher(VUE_LOGIN).forward(request,response);
     }
 }

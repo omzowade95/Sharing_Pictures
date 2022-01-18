@@ -1,6 +1,8 @@
 package com.example.sharing_pictures.form.Users;
 
+import com.example.sharing_pictures.DAO.Utilisateur.UtilisateurDAO;
 import com.example.sharing_pictures.model.Role;
+import com.example.sharing_pictures.model.Rolename;
 import com.example.sharing_pictures.model.Utilisateur;
 
 import javax.persistence.EntityManager;
@@ -19,9 +21,9 @@ public class AddUserForm {
 
     private EntityManagerFactory entityManagerFactory = null;
     private EntityManager entityManager = null;
-    private EntityTransaction entityTransaction = null;
     private HttpServletRequest request;
     private Utilisateur utilisateur;
+    private UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
     private Role role;
 
     public AddUserForm(HttpServletRequest request){
@@ -33,22 +35,21 @@ public class AddUserForm {
         String prenom = getParameter(CHAMP_PRENOM);
         String username  = getParameter(CHAMP_LOGIN);
         String password = getParameter(CHAMP_PASSWORD);
-        String role = getParameter(CHAMP_ROLE);
-
-
+        String role_name = getParameter(CHAMP_ROLE);
 
         entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
         entityManager = entityManagerFactory.createEntityManager();
-        entityTransaction = entityManager.getTransaction();
-        entityTransaction.begin();
 
-       // utilisateur = new Utilisateur(nom,prenom,username,password,role);
-        entityManager.persist(utilisateur);
-        entityTransaction.commit();
-        entityManager.close();
+        Role role = entityManager.find(Role.class,Integer.parseInt(role_name));
+        utilisateur = new Utilisateur(nom,prenom,username,password,role);
 
+        utilisateurDAO.addUser(utilisateur , entityManager);
+
+        if (utilisateur != null){
+            utilisateur = null;
+            return true;
+        }
         return false;
-
     }
 
     private String getParameter(String parametre) {

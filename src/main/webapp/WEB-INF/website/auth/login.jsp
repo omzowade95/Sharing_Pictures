@@ -14,7 +14,7 @@
             Echec de l'authentification : login et/ou mot de passe incorrect
         </div>
     </c:if>
-    <form  method="post">
+    <form  method="post" action="<c:url value="/login" /> ">
         <h1>Se connecter</h1>
         <div class="social-media">
             <p><i class="fab fa-google"></i></p>

@@ -1,20 +1,19 @@
 package com.example.sharing_pictures.DAO.Utilisateur;
 
+import com.example.sharing_pictures.model.Role;
 import com.example.sharing_pictures.model.Utilisateur;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public class UtilisateurDAO implements IUtilisateur {
-    private final EntityManager entityManager;
 
-    public UtilisateurDAO(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
 
     @Override
-    public void addUser(Utilisateur utilisateur) {
+    public void addUser(Utilisateur utilisateur , EntityManager entityManager) {
         entityManager.getTransaction().begin();
         entityManager.persist(utilisateur);
         entityManager.getTransaction().commit();
@@ -32,6 +31,7 @@ public class UtilisateurDAO implements IUtilisateur {
 
     @Override
     public List<UtilisateurDAO> listUser() {
+
         return null;
     }
 
