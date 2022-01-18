@@ -31,7 +31,7 @@ public class SearchUserController extends HttpServlet {
         entityManager = entityManagerFactory.createEntityManager();
 
         String username = request.getParameter("username");
-        UtilisateurDAO dao = new UtilisateurDAO(entityManager);
+        UtilisateurDAO dao = new UtilisateurDAO();
         Utilisateur u = dao.getUser(username);
         String utilisateurJsonString = new Gson().toJson(u);
 
