@@ -24,21 +24,17 @@
 <!-- dishes section starts  -->
 <section class="dishes" id="photos">
 
-    <div class="box-container">
-
-        <div class="container-fluid px-1 py-5 mx-auto">
-            <div class="row d-flex justify-content-center">
-                <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+        <h3 class="txt">Ajouter un nouveau album</h3>
                     <div class="card">
-                        <h3 class="txt">Ajouter un nouveau album</h3>
-                        <form class="form-card"  method="post" action="${APP_ROOT}/Albums/add" onsubmit="event.preventDefault()">
+                        <form class="form-card"  method="post" action="<c:url value="/Albums/add" />" onsubmit="event.preventDefault()">
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-md-6 flex-column d-flex">
                                     <label class="form-control-label col-md-3 px-3">Theme<span class="text-danger"> *</span></label>
                                     <input type="text"  name="theme" placeholder="Enter le theme" >
                                 </div>
                                 <div class="form-group col-md-6 flex-column d-flex">
-                                    <label class="form-control-label col-md-3 px-3">Nom de l'album <span class="text-danger"> *</span></label> <input type="text"  name="nomAlbum" placeholder="Enter le nom de l'album">
+                                    <label class="form-control-label col-md-3 px-3">Nom de l'album <span class="text-danger"> *</span></label>
+                                    <input type="text"  name="nomAlbum" placeholder="Enter le nom de l'album">
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
@@ -66,7 +62,6 @@
                                     <button type="button" style="background-color: green; color: white" class="btn btn-warning" id="addImages">Ajouter <i class="fa fa-plus"></i></button>
                                     <button type="button" style="" class=" btn-danger" id="remove">Retirer <i class="fa fa-minus"></i></button>
                                 </div>
-                                </div>
                             </div>
 
                             <div class="row justify-content-end">
@@ -79,11 +74,7 @@
                             </div>
 
                     </div>
-                </div>
-            </div>
-        </div>
 
-    </div>
 
 </section>
 

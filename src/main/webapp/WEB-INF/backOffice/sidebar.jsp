@@ -34,8 +34,8 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Album</a></li>
-          <li><a href="${APP_ROOT}/Albums/add">Creer</a></li>
-          <li><a href="${APP_ROOT}/Albums">Voir Mes albums</a></li>
+          <li><a href="<c:url value="/Albums/add" />">Creer</a></li>
+          <li><a href="<c:url value="/Albums" />">Voir Mes albums</a></li>
           <li><a href="#">Modifier mes albums</a></li>
         </ul>
       </li>
@@ -50,7 +50,7 @@
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Photos</a></li>
           <li><a href="#">Ajouter photo</a></li>
-          <li><a href="#">Voir Mes photos</a></li>
+          <li><a href="/photos">Voir Mes photos</a></li>
         </ul>
       </li>
 

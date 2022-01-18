@@ -23,7 +23,6 @@ public class ImageDAO implements IImage{
         entityManager.persist(a);
         entityManager.getTransaction().commit();
 
-        this.entityManager.close();
     }
 
     @Override

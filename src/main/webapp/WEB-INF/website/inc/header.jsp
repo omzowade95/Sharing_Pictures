@@ -29,7 +29,7 @@
         <a href="#about"></a>
         <a href="#about"></a>
         <a href="#about"></a>
-        <a href="#review">Connexion</a>
+        <a href="<c:url value="/login" />">Connexion</a>
 
     </nav>
 

@@ -15,13 +15,15 @@ public class Image {
     private int largeur;
     private String dateCreation;
     private String dateMAJ;
-    private String location;
+
+    @Lob
+    private byte[] location;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
 
-    public Image(String titre, String description, int hauteur, int largeur, String dateCreation, String dateMAJ, String location, Album album) {
+    public Image(String titre, String description, int hauteur, int largeur, String dateCreation, String dateMAJ, byte[] location, Album album) {
         this.description = description;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -92,11 +94,11 @@ public class Image {
         this.dateMAJ = dateMAJ;
     }
 
-    public String getLocation() {
+    public byte[] getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(byte[] location) {
         this.location = location;
     }
 

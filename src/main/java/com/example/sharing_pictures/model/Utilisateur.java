@@ -1,5 +1,7 @@
 package com.example.sharing_pictures.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +21,7 @@ public class Utilisateur {
     private String username;
     private String password;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -80,6 +82,18 @@ public class Utilisateur {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
 
