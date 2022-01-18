@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" %>
 
 <!-- header section starts      -->
 <c:import url="WEB-INF/website/inc/header.jsp"/>
@@ -25,7 +26,7 @@
                     <span>PhotoLab la vision du monde</span>
                     <h3>Bienvenue sur PhotoLab.</h3>
                     <p>PhotoLab est une plateforme de partage de photos en ligne</p>
-                    <a href="#" class="btn">Debutez maintenant</a>
+                    <a href="#" class="btn">Débutez maintenant</a>
                 </div>
                 <div class="image">
                     <img src="images/presentattion1.jpg" alt="">
