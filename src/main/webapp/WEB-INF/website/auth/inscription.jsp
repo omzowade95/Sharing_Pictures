@@ -29,11 +29,14 @@
                 <input type="text" name="username" placeholder="Username" />
                 <input type="password" name="pass" placeholder="Mot de passe">
                 <input type="password" name="passConfirm" placeholder="Confirmation mot de passe">
-                <select name="role" >
-                    <option value="1">ADMIN</option>
-                    <option value="2">USER</option>
-                </select>
+                <div>
+                    <select name="role" id="select-id" >
+                        <option value="1">ADMIN</option>
+                        <option value="2">USER</option>
+                    </select>
+                </div>
             </div>
+
             <div align="center">
                 <button type="submit">Valider</button>
             </div>

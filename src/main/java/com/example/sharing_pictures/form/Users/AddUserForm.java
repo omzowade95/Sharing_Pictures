@@ -43,7 +43,10 @@ public class AddUserForm {
         Role role = entityManager.find(Role.class,Integer.parseInt(role_name));
         utilisateur = new Utilisateur(nom,prenom,username,password,role);
 
-        utilisateurDAO.addUser(utilisateur , entityManager);
+        if(utilisateurDAO.searchUsername(username))
+            return false;
+
+        utilisateurDAO.addUser(utilisateur);
 
         if (utilisateur != null){
             utilisateur = null;
