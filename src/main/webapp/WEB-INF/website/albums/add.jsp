@@ -44,8 +44,14 @@
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-md-6 flex-column d-flex">
                                     <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
-                                    <input type="checkbox" id="private" name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
-                                    <input type="checkbox" id="public" name="statue" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
+                                    <input type="checkbox" id="private" value="private"  name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
+                                    <input type="checkbox" id="public"  name="statue" value="public" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
+                                    <div id="authorisationAlbum" class="collapse">
+                                        <input id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
+                                        <br/>
+                                        <hr/>
+                                        <h6 id="userFound"></h6>
+                                    </div>
                                 </div>
                                 <div class="form-inline col-md-9 ">
                                   <!--  <label class="form-control-label px-3">Image :<span class="text-danger"> *</span></label> <input type="file" id="img" name="image" multiple placeholder="Choisir les image de l'album" onchange="readFilesAndDisplayPreview(this.files);" >-->
@@ -64,13 +70,13 @@
                             </div>
 
                             <div class="row justify-content-end">
-                                <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Ajouter album</button> </div>
-                            </div>
+                                <div class="form-group col-sm-"></div>
                         </form>
 
                         <div id="list">
 
-                        </div>
+                            </div> <button type="submit" class="btn-block btn-primary">Ajouter album</button> </div>
+                            </div>
 
                     </div>
                 </div>
@@ -158,6 +164,7 @@
 </body>
 <script>
     $(document).ready(function(){
+        $("#authorisationAlbum").hide();
         var id = 1;
         $('#addImages').on('click',function(){
             var numq3 = $('.albumInfo').length;
@@ -185,6 +192,23 @@
             }
 
         });
+
+        //rechercher un utilisateur
+        $("input[name=statue]").on("click", function () {
+            if($("#private").is(":checked")){
+                $("#authorisationAlbum").show();
+            }else if($("#public").is(":checked")){
+                $("#authorisationAlbum").hide();
+            }
+        })
+        //lancer la recherche
+        $("#searchUser").on("click", function(){
+            var searchInput = $("#searchInput").val();
+
+            $("#userFound").html(searchInput)
+        })
+
+
 
 
     })
