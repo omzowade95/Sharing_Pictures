@@ -87,6 +87,14 @@ public class AlbumDAO implements IAlbum {
         return album;
     }
 
+    public List<Album> getMyAlbum(int id) {
+
+        Query query  = entityManager.createQuery("SELECT r FROM Album r WHERE r.utilisateur.id = :id", Album.class)
+                .setParameter("id", id);
+
+        return query.getResultList();
+    }
+
     public  List<Image> listeImageFromAlbum(int idA) {
         List<Image> results =entityManager.createQuery("SELECT r FROM Image  r WHERE r.album.id = :idA", Image.class)
                 .setParameter("idA", idA).getResultList();

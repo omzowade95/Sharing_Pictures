@@ -81,8 +81,8 @@ public class AddAlbum  extends HttpServlet {
             images.get(i).setTitre(titre[i]);
             images.get(i).setDateCreation(LocalDate.now().toString());
             images.get(i).setDateMAJ(LocalDate.now().toString());
-            images.get(i).setHauteur(12);
-            images.get(i).setLargeur(12);
+            images.get(i).setHauteur(100);
+            images.get(i).setLargeur(100);
         }
 
 
