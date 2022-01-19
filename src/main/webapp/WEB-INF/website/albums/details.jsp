@@ -3,11 +3,12 @@
 
 
 <head>
-    <title>SP | Albums</title>
+    <title>SP | Albums details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <!-- header section starts      -->
 <c:import url="/WEB-INF/website/inc/header.jsp"/>
-    <!-- header section ends-->
+<!-- header section ends-->
 
 <!-- search form  -->
 
@@ -23,27 +24,19 @@
 
     <div class="box-container">
         <c:choose>
-        <c:when test="${!empty requestScope.listAlbum}">
-            <c:forEach items="${requestScope.listAlbum}"  var="album">
-                <div class="box">
-                            <!--<img id="photo" src="data:image/png;base64," width="50px" height="50px" /> -->
-                            <h3>Par : <c:out value="${album.utilisateur.username}"></c:out></h3>
-                            <h4><c:out value="${album.theme.libelle}"></c:out></h4>
-                            <h5><c:out value="${album.date}"></c:out></h5>
-                            <div class="stars">
-                                <span><c:out value="${album.nom}"></c:out></span>
-                            </div>
-                            <a href="<c:url value="/Albums/details?id=${album.id}"/>" class="btn">Consulter</a>
-
-                </div>
-            </c:forEach>
-
-        </c:when>
-        <c:otherwise>
-                <h3>No album available</h3>
-        </c:otherwise>
+            <c:when test="${!empty requestScope.listeImg}">
+                <c:forEach items="${requestScope.listeImg}"  var="album">
+                    <div class="box">
+                        <img id="photo" src="data:image/png;base64,${album.base64Image} " width="50px" height="50px" />
+                        <h3><c:out value="${album.titre}"/></h3>
+                        <h4><c:out value="${album.description}"/></h4>
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <h1>No photo in this album </h1>
+            </c:otherwise>
         </c:choose>
-
     </div>
 
 </section>

@@ -2,7 +2,6 @@ package com.example.sharing_pictures.DAO.Authorisation;
 
 import com.example.sharing_pictures.model.Album;
 import com.example.sharing_pictures.model.Authorisation;
-import com.example.sharing_pictures.model.Theme;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -56,8 +55,8 @@ public class AuthorisationDAO implements IAuthorisation{
     }
 
     @Override
-    public List<Authorisation> listeAuth(int idAlbum) {
-        Query query = entityManager.createQuery("select a from Authorisation a where a.album.id = :idAlbum", Authorisation.class).setParameter("idAlbum",idAlbum);
+    public List<Authorisation> listeAuth(int idUser) {
+        Query query = entityManager.createQuery("select a from Authorisation a where a.utilisateur.id = :idUser", Authorisation.class).setParameter("idUser", idUser);
         return query.getResultList();
     }
 }

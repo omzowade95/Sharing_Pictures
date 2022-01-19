@@ -40,41 +40,56 @@ public class AddAlbumForm {
     }
 
     public boolean add(){
-        entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        entityManager = entityManagerFactory.createEntityManager();
-        albumDAO = new AlbumDAO(entityManager);
-        themeDAO = new ThemeDAO(entityManager);
-        imageDAO = new ImageDAO(entityManager);
-        authorisationDAO = new AuthorisationDAO(entityManager);
-        session = request.getSession();
+        boolean bool = false;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+            entityManager = entityManagerFactory.createEntityManager();
+            albumDAO = new AlbumDAO(entityManager);
+            themeDAO = new ThemeDAO(entityManager);
+            imageDAO = new ImageDAO(entityManager);
+            authorisationDAO = new AuthorisationDAO(entityManager);
+            session = request.getSession();
 
-        //String uploadPath="";
-        String nom = getParameter(CHAMP_NOM);
-        Theme theme = themeDAO.getTheme(CHAMP_THEME);
-        if (theme == null){
-            themeDAO.add(new Theme(CHAMP_THEME));
-            theme = themeDAO.getTheme(CHAMP_THEME);
-        }
-        Status status = Status.valueOf(CHAMP_STATUS);
-        List<Image> images = (List<Image>) request.getAttribute("images");
-
-        Album a = new Album(nom,LocalDate.now().toString(),status,(Utilisateur)session.getAttribute("utilisateur"),theme);
-        albumDAO.add(a);
-        for (Image img: images) {
-            img.setAlbum(a);
-            img.setDateCreation(LocalDate.now().toString());
-            img.setDateMAJ(LocalDate.now().toString());
-            imageDAO.add(img);
-        }
-
-        if (status.equals("PRIVATE")){
-            List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("authorisation");
-            for (Utilisateur u : autorise) {
-                Authorisation at = new Authorisation(a,u);
-                authorisationDAO.add(at);
+            //String uploadPath="";
+            String nom = getParameter(CHAMP_NOM);
+            String th = request.getParameter(CHAMP_THEME);
+            Theme theme = themeDAO.getTheme(th);
+            if (theme == null){
+                themeDAO.add(new Theme(th));
+                theme = themeDAO.getTheme(th);
             }
+            Status status = Status.valueOf((String) request.getAttribute("authorisation"));
+            List<Image> images = (List<Image>) request.getAttribute("listeImage");
+
+            Album a = new Album(nom,LocalDate.now().toString(),status,(Utilisateur)session.getAttribute("user"),theme);
+            albumDAO.add(a);
+            for (Image img: images) {
+                img.setAlbum(a);
+                imageDAO.add(img);
+                bool = true ;
+            }
+
+           /* if (status.toString().equals("PRIVATE")){
+                List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("Userauthoriser");
+                if(autorise != null){
+                    for (Utilisateur u : autorise) {
+                        Authorisation at = new Authorisation(a,u);
+                        Utilisateur ut = (Utilisateur)session.getAttribute("utilisateur");
+                        String code = ut.getUsername() + "-"+ theme;
+                        at.setCode(code);
+                        authorisationDAO.add(at);
+                    }
+                 }
+                bool = true ;
+            }µ*/
+        } catch (Exception e) {
+            e.printStackTrace();
+            bool = false;
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-        return false;
+        return bool;
     }
 
 
@@ -85,18 +100,12 @@ public class AddAlbumForm {
         }
         return "Default.file";
     }
-    private void validerChamps(String ...champs){
-        for (String champ : champs) {
-            if (getParameter(champ) == null) {
-                erreurs.put(champ, "Vous devez remplir ce champ");
-            }
-        }
-    }
+
 
     private String getParameter(String parametre) {
         String valeur = request.getParameter(parametre);
         if (valeur == null || valeur.trim().isEmpty()) {
-            return null;
+            return "";
         }
         return valeur ;
     }

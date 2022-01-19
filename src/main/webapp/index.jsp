@@ -3,8 +3,6 @@
 <!-- header section starts      -->
 <c:import url="WEB-INF/website/inc/header.jsp"/>
 
-<!-- header section ends-->
-
 <!-- search form  -->
 
 <form action="" id="search-form">

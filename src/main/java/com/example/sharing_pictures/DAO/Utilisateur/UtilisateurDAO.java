@@ -3,22 +3,19 @@ package com.example.sharing_pictures.DAO.Utilisateur;
 import com.example.sharing_pictures.model.Role;
 import com.example.sharing_pictures.model.Utilisateur;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
-
+@PersistenceContext( unitName = "sharing_pictures" )
 public class UtilisateurDAO implements IUtilisateur {
 
     private EntityManager entityManager;
-    private EntityManagerFactory entityManagerFactory;
 
-    public UtilisateurDAO(){
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        this.entityManager = entityManagerFactory.createEntityManager();
+    public UtilisateurDAO(EntityManager entityManager){
+        this.entityManager = entityManager;
     }
+
     @Override
     public void addUser(Utilisateur utilisateur) {
         entityManager.getTransaction().begin();
@@ -60,7 +57,34 @@ public class UtilisateurDAO implements IUtilisateur {
         return false;
     }
     @Override
-    public UtilisateurDAO getUser(int id) {
-        return null;
+    public Utilisateur getUser(int id) {
+        Utilisateur user = null;
+        user = entityManager.find(Utilisateur.class,id);
+        return user;
+    }
+
+    public List<Utilisateur> getUser(String username)
+    {
+        List<Utilisateur> utilisateurs = null;
+            //Utilisateur utilisateur = null;
+            entityManager.getTransaction().begin();
+            Query query  = entityManager.createQuery("FROM Utilisateur u WHERE u.username =:username", Utilisateur.class);
+            query.setParameter("username", username);
+            try{
+                System.out.println("requet: " + query);
+
+                utilisateurs =  query.getResultList();
+               System.out.println("taille: " + utilisateurs.size());
+               // System.out.println("Utilisateur: " + utilisateur.getPrenom());
+
+                entityManager.getTransaction().commit();
+                entityManager.close();
+            }catch (NoResultException e){
+                e.printStackTrace();
+            }
+
+
+            return utilisateurs;
+
     }
 }

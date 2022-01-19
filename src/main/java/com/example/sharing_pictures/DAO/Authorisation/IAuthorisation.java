@@ -14,7 +14,8 @@ public interface IAuthorisation {
 
     public boolean delete(int id);
 
-    public List<Authorisation> listeAuth(int idAlbum);
+
+    List<Authorisation> listeAuth(int idUser);
 
     //public Album getAlbum(int id);
 }

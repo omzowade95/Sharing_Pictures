@@ -23,7 +23,7 @@ public class AddUserForm {
     private EntityManager entityManager = null;
     private HttpServletRequest request;
     private Utilisateur utilisateur;
-    private UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
+    private UtilisateurDAO utilisateurDAO ;
     private Role role;
 
     public AddUserForm(HttpServletRequest request){
@@ -31,26 +31,33 @@ public class AddUserForm {
     }
 
     public boolean add(){
-        String nom = getParameter(CHAMP_NOM);
-        String prenom = getParameter(CHAMP_PRENOM);
-        String username  = getParameter(CHAMP_LOGIN);
-        String password = getParameter(CHAMP_PASSWORD);
-        String role_name = getParameter(CHAMP_ROLE);
+        try {
+            String nom = getParameter(CHAMP_NOM);
+            String prenom = getParameter(CHAMP_PRENOM);
+            String username  = getParameter(CHAMP_LOGIN);
+            String password = getParameter(CHAMP_PASSWORD);
+            String role_name = getParameter(CHAMP_ROLE);
 
-        entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        entityManager = entityManagerFactory.createEntityManager();
+            entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+            entityManager = entityManagerFactory.createEntityManager();
+            utilisateurDAO = new UtilisateurDAO(entityManager);
+            Role role = entityManager.find(Role.class,Integer.parseInt(role_name));
+            utilisateur = new Utilisateur(nom,prenom,username,password,role);
 
-        Role role = entityManager.find(Role.class,Integer.parseInt(role_name));
-        utilisateur = new Utilisateur(nom,prenom,username,password,role);
+            if(utilisateurDAO.searchUsername(username))
+                return false;
 
-        if(utilisateurDAO.searchUsername(username))
-            return false;
+            utilisateurDAO.addUser(utilisateur);
 
-        utilisateurDAO.addUser(utilisateur);
-
-        if (utilisateur != null){
-            utilisateur = null;
-            return true;
+            if (utilisateur != null){
+                utilisateur = null;
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
         return false;
     }

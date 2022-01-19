@@ -9,8 +9,7 @@ import java.util.Date;
 public class Album {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
 
     private String nom;

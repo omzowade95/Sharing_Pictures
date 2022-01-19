@@ -2,6 +2,7 @@ package com.example.sharing_pictures.DAO.Image;
 
 import com.example.sharing_pictures.model.Album;
 import com.example.sharing_pictures.model.Image;
+import com.example.sharing_pictures.model.Theme;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -62,6 +63,17 @@ public class ImageDAO implements IImage{
     public List<Image> listeImage() {
         Query query = entityManager.createQuery("select a from Image a", Image.class);
         return query.getResultList();
+    }
+
+    public Image getImage(int id){
+        Query query = entityManager.createQuery("select a from Image a where a.id = :id", Image.class).setParameter("id",id);
+        Image theme = null;
+
+        List<Image> results = query.getResultList();
+        if (!results.isEmpty())
+            theme = results.get(0);
+
+        return theme;
     }
 
     @Override

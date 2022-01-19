@@ -13,5 +13,5 @@ public interface IUtilisateur {
     public  void deleteUser(Utilisateur utilisateur);
 
     public List<Utilisateur> listUser();
-    public UtilisateurDAO getUser(int id);
+    public Utilisateur getUser(int id);
 }

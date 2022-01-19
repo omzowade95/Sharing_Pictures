@@ -8,12 +8,13 @@
         <link rel="stylesheet" href="<c:url value="/css/loginCss.css" />">
     </head>
     <body>
-    <c:if test="${ !empty param.login }" >
+    <c:if test="${ !empty requestScope.erreur }" >
         <div id="messageBox" class="alert alert-danger">
             <span id="control" onclick="hideMessageBox()" title="fermer">x</span>
             Echec de l'authentification : login et/ou mot de passe incorrect
         </div>
     </c:if>
+    <c:out value="${requestScope.erreur}"/>
     <form  method="post" action="<c:url value="/login" /> ">
         <h1>Se connecter</h1>
         <div class="social-media">
