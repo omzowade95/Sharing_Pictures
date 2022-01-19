@@ -61,6 +61,7 @@
                                 <input required id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
                                 <br/>
                                 <hr/>
+                                <h6 id="userNotFound" style="color: red"></h6>
                                 <h6 id="userFound"></h6>
                             </div>
 
@@ -173,16 +174,17 @@
                     data: {username: searchInput},
                     url: '<c:url value="searchUser"></c:url>',
                     success: function (result) {
-                        console.log(result)
-                        $("#userFound").html("");
-                        if(result != null){
-                            autorisationsId.push(result.username)
+                        console.log("result = " + result)
+                        //$("#userFound").html("");
+                        if(result == "undefined"){
+                            $("#userNotFound").html("<h3>Pas de resultat pour ce nom !!!</h3>")
+                        }else{
+                            $("#userNotFound").html("")
+                            autorisationsId.push(result)
                             autorisationsName.push(searchInput)
-                            $("#userFound").html("<h3>" + autorisationsName + "</h3>");
+                            $("#userFound").html("<h3>Personnes autorisees: " + autorisationsName + "</h3>");
                             //console.log(autorisations)
                             $('#autorisations').val(autorisationsId)
-                        }else if(result == null || result == undefined || result == ""){
-                            $("#userFound").html("Utilisateur non trouvé !!!")
                         }
                     }
                 }

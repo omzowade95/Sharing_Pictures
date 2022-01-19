@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/Albums/searchUser")
 public class SearchUserController extends HttpServlet {
@@ -33,15 +34,20 @@ public class SearchUserController extends HttpServlet {
 
         String username = request.getParameter("username");
         UtilisateurDAO dao = new UtilisateurDAO(entityManager);
-        Utilisateur u = dao.getUser(username);
-
+        List<Utilisateur> u = dao.getUser(username);
+        String user ;
+        if(u.size() > 0){
+             user = Integer.toString(u.get(0).getId());
+        }else{
+            user = "undefined";
+        }
         //String gson = new Gson().toJson(u);
         //String utilisateurTrouve = gson.toJson(u);
         //System.out.println("Server: pass: " + utilisateurTrouve);
-        response.setContentType("application/json");
+        //response.setContentType("application/json");
        // response.setCharacterEncoding("UTF-8");
-        String user = Integer.toString(u.getId());
-        //System.out.println("response: " + user);
+
+        System.out.println("response: " + user);
        response.getWriter().write(user);
     }
 }

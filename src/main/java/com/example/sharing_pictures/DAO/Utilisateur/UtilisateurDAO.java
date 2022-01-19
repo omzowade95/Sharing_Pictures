@@ -63,21 +63,28 @@ public class UtilisateurDAO implements IUtilisateur {
         return user;
     }
 
-    public Utilisateur getUser(String username)
+    public List<Utilisateur> getUser(String username)
     {
-            Utilisateur utilisateur = null;
-            Query query  = entityManager.createQuery("SELECT u FROM Utilisateur u WHERE u.username =:username");
-            query.setParameter("username", username).getSingleResult();
+        List<Utilisateur> utilisateurs = null;
+            //Utilisateur utilisateur = null;
+            entityManager.getTransaction().begin();
+            Query query  = entityManager.createQuery("FROM Utilisateur u WHERE u.username =:username", Utilisateur.class);
+            query.setParameter("username", username);
             try{
-                utilisateur = (Utilisateur) query.getSingleResult();
-                System.out.println("Utilisateur: " + utilisateur.getPrenom());
-            }catch (NoResultException e){
-                utilisateur = null;
-            }
-            catch (Exception e){
+                System.out.println("requet: " + query);
 
+                utilisateurs =  query.getResultList();
+               System.out.println("taille: " + utilisateurs.size());
+               // System.out.println("Utilisateur: " + utilisateur.getPrenom());
+
+                entityManager.getTransaction().commit();
+                entityManager.close();
+            }catch (NoResultException e){
+                e.printStackTrace();
             }
-            return utilisateur;
+
+
+            return utilisateurs;
 
     }
 }
