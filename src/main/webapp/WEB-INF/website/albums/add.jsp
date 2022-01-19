@@ -48,12 +48,26 @@
                                     </label>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="public" value="PUBLIC" name="statue" placeholder="" onclick="myFun(this)">
                                     <label class="form-check-label" for="public">
                                         public
                                     </label>
+=======
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-md-6 flex-column d-flex">
+                                    <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
+                                    <input type="checkbox" id="private" value="private"  name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
+                                    <input type="checkbox" id="public"  name="statue" value="public" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
+                                    <div id="authorisationAlbum" class="collapse">
+                                        <input id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
+                                        <br/>
+                                        <hr/>
+                                        <h6 id="userFound"></h6>
+                                    </div>
+>>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
                                 </div>
                             </div>
 
@@ -61,6 +75,7 @@
                                 <div class="form-inline col-md-9 ">
                                     <div class="form-group albumInfo" id="input">
                                         <label for="">Image: <sup class="text text-danger">*</sup></label> &nbsp;
+<<<<<<< HEAD
                                         <div class="row">
                                             <div class="col ">
                                                 <input  type="file" name="images[files][]" accept="image/*" class="elem">
@@ -73,21 +88,34 @@
                                             </div>
                                         </div>
 
+=======
+                                        <input type="file" name="images[files][]" class="elem">
+                                        <input type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
+                                        <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
+                                        <input type="hidden" name="autorisations" id="autorisations"/>
+>>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
                                     </div>
                                     <br/><br/>
                                     <button type="button" style="background-color: green; color: white" class="btn btn-warning" id="addImages">Ajouter <i class="fa fa-plus"></i></button>
                                     <button type="button" style="" class=" btn-danger" id="remove">Retirer <i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Ajouter album</button>
                             </div>
 
+=======
+
+                            <div class="row justify-content-end">
+                                <div class="form-group col-sm-"></div>
+>>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
                         </form>
 
                         <div id="list">
 
-                        </div>
+                            </div> <button type="submit" class="btn-block btn-primary">Ajouter album</button> </div>
+                            </div>
 
                     </div>
 
@@ -136,6 +164,7 @@
 </body>
 <script>
     $(document).ready(function(){
+        $("#authorisationAlbum").hide();
         var id = 1;
         $('#addImages').on('click',function(){
             var numq3 = $('.albumInfo').length;
@@ -163,6 +192,43 @@
             }
 
         });
+
+        //rechercher un utilisateur
+        $("input[name=statue]").on("click", function () {
+            if($("#private").is(":checked")){
+                $("#authorisationAlbum").show();
+            }else if($("#public").is(":checked")){
+                $("#authorisationAlbum").hide();
+            }
+        })
+        //lancer la recherche
+        var autorisationsId = new Array();
+        var autorisationsName = new Array();
+        $('#searchUser').on('click', function () {
+            var searchInput = $("#searchInput").val();
+            $.ajax(
+                {
+                    type: 'GET',
+                    data: {username: searchInput},
+                    url: '<c:url value="searchUser"></c:url>',
+                    success: function (result) {
+                        console.log(result)
+                        $("#userFound").html("");
+                        if(result != null){
+                            autorisationsId.push(result.username)
+                            autorisationsName.push(searchInput)
+                            $("#userFound").html("<h3>" + autorisationsName + "</h3>");
+                            //console.log(autorisations)
+                            $('#autorisations').val(autorisationsId)
+                        }else if(result == null || result == undefined || result == ""){
+                            $("#userFound").html("Utilisateur non trouvé !!!")
+                        }
+                    }
+                }
+            )
+        })
+
+
 
 
     })

@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+<<<<<<< HEAD
 @WebFilter({"/Albums/add", "/Albums/details"})
+=======
+@WebFilter({""})
+>>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
 public class AuthenticationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
