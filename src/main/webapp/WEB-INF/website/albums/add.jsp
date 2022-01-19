@@ -48,78 +48,56 @@
                                     </label>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <div class="col-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="public" value="PUBLIC" name="statue" placeholder="" onclick="myFun(this)">
                                     <label class="form-check-label" for="public">
                                         public
                                     </label>
-=======
-                            <div class="row justify-content-between text-left">
-                                <div class="form-group col-md-6 flex-column d-flex">
-                                    <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
-                                    <input type="checkbox" id="private" value="private"  name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
-                                    <input type="checkbox" id="public"  name="statue" value="public" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
-                                    <div id="authorisationAlbum" class="collapse">
-                                        <input id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
-                                        <br/>
-                                        <hr/>
-                                        <h6 id="userFound"></h6>
-                                    </div>
->>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
                                 </div>
                             </div>
+
+                            <div id="authorisationAlbum" class="collapse">
+                                <input required id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
+                                <br/>
+                                <hr/>
+                                <h6 id="userFound"></h6>
+                            </div>
+
 
                             <div class="input-group mb-3">
                                 <div class="form-inline col-md-9 ">
                                     <div class="form-group albumInfo" id="input">
-                                        <label for="">Image: <sup class="text text-danger">*</sup></label> &nbsp;
-<<<<<<< HEAD
+                                        <label >Image: <sup class="text text-danger">*</sup></label> &nbsp;
                                         <div class="row">
                                             <div class="col ">
                                                 <input  type="file" name="images[files][]" accept="image/*" class="elem">
                                             </div>
                                             <div class="col">
-                                                <input required type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
+                                                <input required type="text" name="images[titles][]" id="titles" placeholder="Entrez le titre de l'image">
                                             </div>
                                             <div class="col-6">
                                                 <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
                                             </div>
-                                        </div>
 
-=======
-                                        <input type="file" name="images[files][]" class="elem">
-                                        <input type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
-                                        <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
-                                        <input type="hidden" name="autorisations" id="autorisations"/>
->>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
+                                        </div>
                                     </div>
                                     <br/><br/>
                                     <button type="button" style="background-color: green; color: white" class="btn btn-warning" id="addImages">Ajouter <i class="fa fa-plus"></i></button>
                                     <button type="button" style="" class=" btn-danger" id="remove">Retirer <i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
-<<<<<<< HEAD
+
+                            <div class="col-6">
+                                <input type="hidden" name="autorisations" id="autorisations"/>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Ajouter album</button>
                             </div>
 
-=======
 
-                            <div class="row justify-content-end">
-                                <div class="form-group col-sm-"></div>
->>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
                         </form>
-
-                        <div id="list">
-
-                            </div> <button type="submit" class="btn-block btn-primary">Ajouter album</button> </div>
-                            </div>
-
                     </div>
-
-
 </section>
 
 
@@ -130,11 +108,14 @@
 </section>
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- custom js file link  -->
 <script src="/js/script.js"></script>
+
+
 <script>
 
     function myFun(checkbox) {
@@ -143,26 +124,6 @@
             if (item !== checkbox) item.checked =  false
         })}
 
-    function readFilesAndDisplayPreview(files) {
-        let imageList = document.querySelector('#list');
-        imageList.innerHTML = "";
-
-        for ( let file of files ) {
-            let reader = new FileReader();
-
-            reader.addEventListener( "load", function( event ) {
-                let span = document.createElement('span');
-                span.innerHTML = '<img height="20px" src="' + event.target.result + '" /><br/>';
-                imageList.appendChild( span );
-            });
-
-            reader.readAsDataURL( file );
-        }
-    }
-</script>
-
-</body>
-<script>
     $(document).ready(function(){
         $("#authorisationAlbum").hide();
         var id = 1;
@@ -233,5 +194,12 @@
 
     })
 </script>
+
+
+</body>
+
+
+
+
 
 </html>

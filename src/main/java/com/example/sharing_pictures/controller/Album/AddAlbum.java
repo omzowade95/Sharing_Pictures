@@ -48,7 +48,17 @@ public class AddAlbum  extends HttpServlet {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Utilisateur user  = entityManager.find(Utilisateur.class, 1);
+        String auth = request.getParameter("autorisations");
+        System.out.println(auth);
+
+        String[] arrOfStr = auth.split(",");
+
+        for (String a : arrOfStr){
+            System.out.println(a);
+        System.out.println("okk");
+        }
+
+        /*Utilisateur user  = entityManager.find(Utilisateur.class, 1);
 
 
         String[] results = request.getParameterValues("statue");
@@ -81,7 +91,7 @@ public class AddAlbum  extends HttpServlet {
         if (addAlbumForm.add()){
             response.sendRedirect(request.getContextPath()+"/Albums");
         }
-
+*/
 
 
     }

@@ -13,17 +13,9 @@ public class UtilisateurDAO implements IUtilisateur {
     private EntityManager entityManager;
 
     public UtilisateurDAO(EntityManager entityManager){
-<<<<<<< HEAD
         this.entityManager = entityManager;
-=======
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        this.entityManager = entityManagerFactory.createEntityManager();
     }
-    public UtilisateurDAO(){
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        this.entityManager = entityManagerFactory.createEntityManager();
->>>>>>> aa400aa13695e3d0f6b8d37d5ecc59780ac629bb
-    }
+
     @Override
     public void addUser(Utilisateur utilisateur) {
         entityManager.getTransaction().begin();

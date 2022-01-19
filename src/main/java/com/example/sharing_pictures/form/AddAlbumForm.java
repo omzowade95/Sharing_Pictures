@@ -70,14 +70,16 @@ public class AddAlbumForm {
             }
 
            /* if (status.toString().equals("PRIVATE")){
-                List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("authorisation");
-                for (Utilisateur u : autorise) {
-                    Authorisation at = new Authorisation(a,u);
-                    Utilisateur ut = (Utilisateur)session.getAttribute("utilisateur");
-                    String code = ut.getUsername() + "-"+ theme;
-                    at.setCode(code);
-                    authorisationDAO.add(at);
-                }
+                List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("Userauthoriser");
+                if(autorise != null){
+                    for (Utilisateur u : autorise) {
+                        Authorisation at = new Authorisation(a,u);
+                        Utilisateur ut = (Utilisateur)session.getAttribute("utilisateur");
+                        String code = ut.getUsername() + "-"+ theme;
+                        at.setCode(code);
+                        authorisationDAO.add(at);
+                    }
+                 }
                 bool = true ;
             }µ*/
         } catch (Exception e) {
