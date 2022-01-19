@@ -1,6 +1,7 @@
 package com.example.sharing_pictures.DAO.Album;
 
 import com.example.sharing_pictures.model.Album;
+import com.example.sharing_pictures.model.Image;
 import com.example.sharing_pictures.model.Status;
 
 import javax.persistence.*;
@@ -86,6 +87,13 @@ public class AlbumDAO implements IAlbum {
         return album;
     }
 
+    public  List<Image> listeImageFromAlbum(int idA) {
+        List<Image> results =entityManager.createQuery("SELECT r FROM Image  r WHERE r.album.id = :idA", Image.class)
+                .setParameter("idA", idA).getResultList();
+        // results = query.getResultList();
+        return results;
+
+    }
 
 
 

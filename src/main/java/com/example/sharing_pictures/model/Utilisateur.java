@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
 
     private String nom ;
@@ -92,7 +92,7 @@ public class Utilisateur {
                 ", prenom='" + prenom + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", role=" + role.toString() +
                 '}';
     }
 }

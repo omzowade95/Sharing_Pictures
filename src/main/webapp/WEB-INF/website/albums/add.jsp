@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="<c:url value="/css/formstyle.css" />">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 <!-- header section starts      -->
@@ -14,42 +15,63 @@
 
 <!-- search form  -->
 
-<form action="" id="search-form">
-    <input type="search" placeholder="search here..." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
-    <i class="fas fa-times" id="close"></i>
-</form>
+
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
 <!-- dishes section starts  -->
 <section class="dishes" id="photos">
-
         <h3 class="txt">Ajouter un nouveau album</h3>
                     <div class="card">
-                        <form class="form-card"  method="post" action="<c:url value="/Albums/add" />" onsubmit="event.preventDefault()">
-                            <div class="row justify-content-between text-left">
-                                <div class="form-group col-md-6 flex-column d-flex">
-                                    <label class="form-control-label col-md-3 px-3">Theme<span class="text-danger"> *</span></label>
-                                    <input type="text"  name="theme" placeholder="Enter le theme" >
-                                </div>
-                                <div class="form-group col-md-6 flex-column d-flex">
-                                    <label class="form-control-label col-md-3 px-3">Nom de l'album <span class="text-danger"> *</span></label>
-                                    <input type="text"  name="nomAlbum" placeholder="Enter le nom de l'album">
+                        <form class="row g-3" method="post" action="<c:url value="/Albums/add" />" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="theme" class="form-label">Theme</label>
+                                <input required class="form-control" id = "theme" list="datalistOptions" name="theme" placeholder="">
+                                <datalist id="datalistOptions">
+                                <option value="Voyage">
+                                <option value="Vacance">
+                                <option value="Soirée">
+                                <option value="Mariage">
+                                <option value="Meeting">
+                            </datalist>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Nom de l'album</label>
+                                <input required type="text" class="form-control" id="formGroupExampleInput" name="nomAlbum" placeholder="nom album">
+                            </div>
+
+                            <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="statue" type="checkbox" id="private"  name="statue" value="PRIVATE" placeholder="" onclick="myFun(this)">
+                                    <label class="form-check-label" for="private">
+                                        private
+                                    </label>
                                 </div>
                             </div>
-                            <div class="row justify-content-between text-left">
-                                <div class="form-group col-md-6 flex-column d-flex">
-                                    <label class="form-control-label col-md-3 px-3">Status :<span class="text-danger"> *</span></label>
-                                    <input type="checkbox" id="private" name="statue" placeholder="" onclick="myFun(this)"> <label>PRIVATE</label>
-                                    <input type="checkbox" id="public" name="statue" placeholder="" onclick="myFun(this)"> <label>PUBLIC</label>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="public" value="PUBLIC" name="statue" placeholder="" onclick="myFun(this)">
+                                    <label class="form-check-label" for="public">
+                                        public
+                                    </label>
                                 </div>
+                            </div>
+
+                            <div class="input-group mb-3">
                                 <div class="form-inline col-md-9 ">
-                                  <!--  <label class="form-control-label px-3">Image :<span class="text-danger"> *</span></label> <input type="file" id="img" name="image" multiple placeholder="Choisir les image de l'album" onchange="readFilesAndDisplayPreview(this.files);" >-->
                                     <div class="form-group albumInfo" id="input">
                                         <label for="">Image: <sup class="text text-danger">*</sup></label> &nbsp;
-                                        <input type="file" name="images[files][]" class="elem">
-                                        <input type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
-                                        <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
+                                        <div class="row">
+                                            <div class="col ">
+                                                <input  type="file" name="images[files][]" accept="image/*" class="elem">
+                                            </div>
+                                            <div class="col">
+                                                <input required type="text" name="images[titles][]" id="" placeholder="Entrez le titre de l'image">
+                                            </div>
+                                            <div class="col-6">
+                                                <textarea type="text"  required placeholder="Renseignez la description" name="images[descriptions][]" class="form-control form-control-md col-md-6 elem" value=""></textarea> &nbsp; &nbsp;
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <br/><br/>
@@ -57,10 +79,10 @@
                                     <button type="button" style="" class=" btn-danger" id="remove">Retirer <i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
-
-                            <div class="row justify-content-end">
-                                <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Ajouter album</button> </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Ajouter album</button>
                             </div>
+
                         </form>
 
                         <div id="list">
@@ -72,19 +94,6 @@
 
 </section>
 
-<!-- dishes section ends -->
-
-
-
-
-
-<!-- about section starts  -->
-
-<!-- about section ends -->
-
-
-
-<!-- footer section starts  -->
 
 <section class="footer">
 
@@ -92,31 +101,9 @@
 
 </section>
 
-<!-- footer section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-
 
 <!-- custom js file link  -->
 <script src="/js/script.js"></script>

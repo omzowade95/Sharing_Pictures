@@ -1,13 +1,15 @@
 package com.example.sharing_pictures.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 
 @Entity
 public class Image {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id ;
     private String titre ;
     private String description ;
@@ -22,6 +24,19 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
+
+    @Transient
+    private String base64Image;
+
+    public String getBase64Image() {
+        base64Image = Base64.getEncoder().encodeToString(this.location);
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
+
 
     public Image(String titre, String description, int hauteur, int largeur, String dateCreation, String dateMAJ, byte[] location, Album album) {
         this.description = description;
@@ -108,5 +123,19 @@ public class Image {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", hauteur=" + hauteur +
+                ", largeur=" + largeur +
+                ", dateCreation='" + dateCreation + '\'' +
+                ", dateMAJ='" + dateMAJ + '\'' +
+                ", album=" + album +
+                '}';
     }
 }

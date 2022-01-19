@@ -1,10 +1,8 @@
 package com.example.sharing_pictures.controller.Album;
 
 import com.example.sharing_pictures.DAO.Album.AlbumDAO;
-import com.example.sharing_pictures.DAO.Image.ImageDAO;
-import com.example.sharing_pictures.model.Album;
-import com.example.sharing_pictures.model.Image;
-import com.example.sharing_pictures.model.Status;
+import com.example.sharing_pictures.DAO.Authorisation.AuthorisationDAO;
+import com.example.sharing_pictures.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,9 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/Albums")
@@ -32,40 +30,47 @@ public class AlbumListController extends HttpServlet {
     private EntityManagerFactory entityManagerFactory = null;
     private EntityManager entityManager = null;
     private AlbumDAO  album;
+    HttpSession session;
 
 
-   /* @Override
-    public void init() throws ServletException {
-        uploadPath = getServletContext().getRealPath( "/" );
-        File uploadDir = new File( uploadPath );
-        if ( ! uploadDir.exists() ) uploadDir.mkdir();
-    }*/
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        for ( Part part : request.getParts() ) {
-            String fileName = getFileName( part );
-            String fullPath = uploadPath + File.separator + fileName;
-            part.write( fullPath );
-            System.out.println(fullPath);
-            System.out.println("okkkk");
-        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setAttribute("activeAlbum", true);
+        request.setCharacterEncoding("UTF-8");
+
+        session = request.getSession();
+        Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
             entityManager = entityManagerFactory.createEntityManager();
+            List<Album> albumList ;
             album = new AlbumDAO(entityManager);
-            List<Album> albumList = album.getAlbumByStatus(Status.PUBLIC) ;
+            albumList = album.getAlbumByStatus(Status.PUBLIC) ;
+            List<Image> imageAlb = new ArrayList<>();
 
-            request.setAttribute("listAlbum", albumList);
-            for (Album a: albumList ) {
-                System.out.println(a.toString());
+            if (u != null){
+                AuthorisationDAO authorisationDAO = new AuthorisationDAO(entityManager);
+                List<Authorisation> auth = authorisationDAO.listeAuth(u.getId());
+                for (Authorisation a: auth) {
+                    albumList.add(a.getAlbum());
+                }
 
             }
+
+                for (Album a : albumList) {
+                   imageAlb.add( album.listeImageFromAlbum(a.getId()).get(0));
+                }
+
+
+
+            request.setAttribute("listAlbum", albumList);
+            request.setAttribute("listImage", imageAlb);
+
 
         }catch (Exception e){
 
@@ -73,17 +78,14 @@ public class AlbumListController extends HttpServlet {
 
 
         } finally {
-
+            entityManager.close();
+            entityManagerFactory.close();
         }
+
+
 
         request.getRequestDispatcher(VUE_lIST_ALBUM).forward(request, response);
     }
 
-    private String getFileName( Part part ) {
-        for ( String content : part.getHeader( "content-disposition" ).split( ";" ) ) {
-            if ( content.trim().startsWith( "filename" ) )
-                return content.substring( content.indexOf( "=" ) + 2, content.length() - 1 );
-        }
-        return "Default.file";
-    }
+
 }

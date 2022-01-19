@@ -63,10 +63,13 @@ public class ThemeDAO implements ITheme{
 
     @Override
     public Theme getTheme(String libelle) {
-        Theme theme = entityManager.find(Theme.class, libelle);
-        if (theme == null) {
-            return null ;
-        }
+        Query query = entityManager.createQuery("select a from Theme a where a.libelle = :libelle", Theme.class).setParameter("libelle",libelle);
+        Theme theme = null;
+
+        List<Theme> results = query.getResultList();
+        if (!results.isEmpty())
+            theme = results.get(0);
+
         return theme;
     }
 }

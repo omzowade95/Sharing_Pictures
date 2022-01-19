@@ -3,9 +3,8 @@ package com.example.sharing_pictures.testJPA;
 
 import com.example.sharing_pictures.DAO.Album.AlbumDAO;
 import com.example.sharing_pictures.DAO.Image.ImageDAO;
-import com.example.sharing_pictures.model.Album;
-import com.example.sharing_pictures.model.Image;
-import com.example.sharing_pictures.model.Utilisateur;
+import com.example.sharing_pictures.DAO.Utilisateur.UtilisateurDAO;
+import com.example.sharing_pictures.model.*;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.engine.jdbc.BlobProxy;
@@ -15,6 +14,7 @@ import org.hibernate.type.LocalDateType;
 import java.io.*;
 import java.sql.Blob;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -31,35 +31,21 @@ public class Test {
         try {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
             entityManager = entityManagerFactory.createEntityManager();
-            AlbumDAO  al = new AlbumDAO(entityManager);
-           Album a = al.getAlbum(1) ;
-            ImageDAO img = new ImageDAO(entityManager);
 
-            List<Image> l = img.listeImageFromAlbum(1);
+            Role roleA = new Role(Rolename.ADMIN);
+            Role roleB = new Role(Rolename.USER);
 
-            for (Image i:
-                  l) {
-                System.out.println(i.toString());
-            }
+            entityManager.getTransaction().begin();
+            entityManager.persist(roleA);
+            entityManager.persist(roleB);
+            entityManager.getTransaction().commit();
 
-           /* String path = "C:/Users/User/Pictures/Screenshots/img.png";
-            File f = new File(path);
-            InputStream fstream = new FileInputStream(f);
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            UtilisateurDAO ud = new UtilisateurDAO(entityManager);
+            Utilisateur u = new Utilisateur("Balde","blandine","blanblan","passer",roleA);
+            Utilisateur u2 = new Utilisateur("Balde","blandine","blanblan2","passer",roleB);
 
-            int nRead;
-            byte[] data = new byte[16384];
-
-            while ((nRead = fstream.read(data, 0, data.length)) != -1) {
-                buffer.write(data, 0, nRead);
-            }
-
-             buffer.toByteArray();
-
-
-            Image im = new Image("blandine","bbbbbb",2,3, LocalDate.now().toString(),LocalDate.now().toString(), buffer.toByteArray(),a);
-
-            img.add(im);*/
+            //ud.addUser(u,entityManager);
+            //ud.addUser(u2,entityManager);
 
         }catch (Exception e){
 

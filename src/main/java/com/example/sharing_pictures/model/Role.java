@@ -9,7 +9,7 @@ import java.util.List;
 public class Role{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id ;
 
     @Enumerated(EnumType.STRING)
@@ -23,6 +23,14 @@ public class Role{
 
     public Role() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role=" + role +
+                '}';
     }
 
     public int getId() {

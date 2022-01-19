@@ -13,11 +13,9 @@ import java.util.List;
 public class UtilisateurDAO implements IUtilisateur {
 
     private EntityManager entityManager;
-    private EntityManagerFactory entityManagerFactory;
 
-    public UtilisateurDAO(){
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        this.entityManager = entityManagerFactory.createEntityManager();
+    public UtilisateurDAO(EntityManager entityManager){
+        this.entityManager = entityManager;
     }
     @Override
     public void addUser(Utilisateur utilisateur) {
@@ -60,7 +58,9 @@ public class UtilisateurDAO implements IUtilisateur {
         return false;
     }
     @Override
-    public UtilisateurDAO getUser(int id) {
-        return null;
+    public Utilisateur getUser(int id) {
+        Utilisateur user = null;
+        user = entityManager.find(Utilisateur.class,id);
+        return user;
     }
 }

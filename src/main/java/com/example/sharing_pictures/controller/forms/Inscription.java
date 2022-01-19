@@ -24,7 +24,7 @@ public class Inscription extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AddUserForm form = new AddUserForm(request);
         if (form.add())
-            this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION).forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/login");
         else{
             this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION).forward(request,response);
             request.setAttribute("form",form);
