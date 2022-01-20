@@ -28,20 +28,21 @@ public class AlbumDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String id = request.getParameter("id");
-
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
             entityManager = entityManagerFactory.createEntityManager();
             albumDAO = new AlbumDAO(entityManager);
             if (id != null) {
 
-                if (id.trim().equals("")) {
+
                     List<Image> imageList = albumDAO.listeImageFromAlbum(Integer.parseInt(id));
                     request.setAttribute("listeImg", imageList);
-                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }finally {
+            entityManager.close();
+        entityManagerFactory.close();}
 
         request.getRequestDispatcher(VUE_DETAIL_ALBUM).forward(request, response);
     }

@@ -58,7 +58,7 @@ public class AddAlbumForm {
                 themeDAO.add(new Theme(th));
                 theme = themeDAO.getTheme(th);
             }
-            Status status = Status.valueOf((String) request.getAttribute("authorisation"));
+            Status status = Status.valueOf((String) request.getAttribute("statue"));
             List<Image> images = (List<Image>) request.getAttribute("listeImage");
 
             Album a = new Album(nom,LocalDate.now().toString(),status,(Utilisateur)session.getAttribute("user"),theme);
@@ -66,22 +66,23 @@ public class AddAlbumForm {
             for (Image img: images) {
                 img.setAlbum(a);
                 imageDAO.add(img);
-                bool = true ;
             }
 
-           /* if (status.toString().equals("PRIVATE")){
-                List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("Userauthoriser");
-                if(autorise != null){
+            if (status.toString().equals("PRIVATE")){
+                List<Utilisateur> autorise = (List<Utilisateur>) request.getAttribute("utilisateurAuthoriser");
+
                     for (Utilisateur u : autorise) {
                         Authorisation at = new Authorisation(a,u);
-                        Utilisateur ut = (Utilisateur)session.getAttribute("utilisateur");
-                        String code = ut.getUsername() + "-"+ theme;
+                        Utilisateur ut = (Utilisateur)session.getAttribute("user");
+                        String code = ut.getId() + "-"+ theme;
                         at.setCode(code);
                         authorisationDAO.add(at);
                     }
-                 }
-                bool = true ;
-            }µ*/
+
+
+
+            }
+            bool = true;
         } catch (Exception e) {
             e.printStackTrace();
             bool = false;

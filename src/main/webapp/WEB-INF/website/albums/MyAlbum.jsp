@@ -27,13 +27,15 @@
                 <c:forEach items="${requestScope.listeAlbumUser}"  var="album">
                     <div class="box">
                         <!--<img id="photo" src="data:image/png;base64," width="50px" height="50px" /> -->
-                        <h3>Par : <c:out value="${album.utilisateur.nom}"></c:out></h3>
+                        <h3>Par : <c:out value="${album.utilisateur.username}"></c:out></h3>
                         <h4><c:out value="${album.theme.libelle}"></c:out></h4>
                         <h5><c:out value="${album.date}"></c:out></h5>
                         <div class="stars">
                             <span><c:out value="${album.nom}"></c:out></span>
                         </div>
                         <a href="<c:url value="/Albums/details?id=${album.id}"/>" class="btn">Consulter</a>
+                        <a href="<c:url value="/Albums/update?id=${album.id}"/>" class="btn">Modifier</a>
+                        <a href="<c:url value="/Albums/delete?id=${album.id}"/>" class="btn">Supprimer</a>
 
                     </div>
                 </c:forEach>
@@ -43,6 +45,8 @@
                 <h3>No album available</h3>
             </c:otherwise>
         </c:choose>
+
+        <a class="btn btn-info" type="button" href="<c:url value="/Albums/add"/>"> Ajouter un album </a>
 
     </div>
 

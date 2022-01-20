@@ -30,16 +30,26 @@ public class MyAlbum extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       HttpSession session  =request.getSession();
-       Utilisateur user = (Utilisateur) session.getAttribute("user");
 
-        entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        entityManager = entityManagerFactory.createEntityManager();
-        albumDAO = new AlbumDAO(entityManager);
-        List<Album> albumListUser = albumDAO.getMyAlbum(user.getId());
-        request.setAttribute("listeAlbumUser", albumListUser);
+        try {
+            HttpSession session  =request.getSession();
+            Utilisateur user = (Utilisateur) session.getAttribute("user");
 
-        request.getRequestDispatcher(VUE_DETAIL_ALBUM).forward(request, response);
+            entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+            entityManager = entityManagerFactory.createEntityManager();
+            albumDAO = new AlbumDAO(entityManager);
+            List<Album> albumListUser = albumDAO.getMyAlbum(user.getId());
+            request.setAttribute("listeAlbumUser", albumListUser);
+
+            request.getRequestDispatcher(VUE_DETAIL_ALBUM).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+
+
     }
 
     @Override

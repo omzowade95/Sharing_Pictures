@@ -2,6 +2,7 @@ package com.example.sharing_pictures.controller.Album;
 
 import com.example.sharing_pictures.DAO.Album.AlbumDAO;
 import com.example.sharing_pictures.DAO.Image.ImageDAO;
+import com.example.sharing_pictures.DAO.Utilisateur.UtilisateurDAO;
 import com.example.sharing_pictures.form.AddAlbumForm;
 import com.example.sharing_pictures.form.ImageUploader;
 import com.example.sharing_pictures.model.Album;
@@ -34,6 +35,7 @@ public class AddAlbum  extends HttpServlet {
     private static final String VUE_ALBUM = "/WEB-INF/website/albums/list.jsp";
     private static  String lIST_IMAGES = "/Images_Upload";
     HttpSession session;
+    UtilisateurDAO utilisateurDAO ;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,53 +47,74 @@ public class AddAlbum  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        String auth = request.getParameter("autorisations");
-        System.out.println(auth);
+        EntityManager entityManager = null;
+        EntityManagerFactory entityManagerFactory = null;
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
+            entityManager = entityManagerFactory.createEntityManager();
+            List<Utilisateur> utilisateurList = new ArrayList<>();
+            utilisateurDAO = new UtilisateurDAO(entityManager);
+            String auth = request.getParameter("autorisations");
 
-        String[] arrOfStr = auth.split(",");
 
-        for (String a : arrOfStr){
-            System.out.println(a);
-        System.out.println("okk");
+
+            if (auth != null) {
+                String[] arrOfStr = auth.split(",");
+                for (String a : arrOfStr) {
+                    System.out.println(a);
+                    if (!a.equals("")) {
+                        int id = Integer.parseInt(a);
+                        Utilisateur user = utilisateurDAO.getUser(id);
+                        System.out.println("user");
+                        System.out.println(user);
+                        utilisateurList.add(user);
+                    }
+                }
+            }
+
+            for (Utilisateur u : utilisateurList) {
+                System.out.println(u);
+                System.out.println("list");
+            }
+            request.setAttribute("utilisateurAuthoriser", utilisateurList);
+
+
+            String[] results = request.getParameterValues("statue");
+            if (results != null)
+                request.setAttribute("statue", results[0]);
+
+            String[] desc = request.getParameterMap().get("images[descriptions][]");
+            String[] titre = request.getParameterMap().get("images[titles][]");
+
+            ImageUploader imgUp = new ImageUploader(request);
+            List<Image> images = imgUp.saveImages();
+
+            AddAlbumForm addAlbumForm = new AddAlbumForm(request, session);
+
+            for (int i = 0; i < desc.length; i++) {
+                images.get(i).setDescription(desc[i]);
+                images.get(i).setTitre(titre[i]);
+                images.get(i).setDateCreation(LocalDate.now().toString());
+                images.get(i).setDateMAJ(LocalDate.now().toString());
+                images.get(i).setHauteur(100);
+                images.get(i).setLargeur(100);
+            }
+
+            request.setAttribute("listeImage", images);
+
+            if (addAlbumForm.add()) {
+                response.sendRedirect(request.getContextPath() + "/Albums");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/Albums/add");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
         }
-
-        /*Utilisateur user  = entityManager.find(Utilisateur.class, 1);
-
-
-        String[] results = request.getParameterValues("statue");
-        request.setAttribute("authorisation", results[0]);
-
-        String[] desc = request.getParameterMap().get("images[descriptions][]");
-        String[] titre = request.getParameterMap().get("images[titles][]");
-
-        ImageUploader imgUp = new ImageUploader(request);
-        List<Image> images =  imgUp.saveImages();
-
-        session.setAttribute("utilisateur", user);
-        AddAlbumForm addAlbumForm = new AddAlbumForm(request,session);
-
-
-
-
-        for (int i = 0; i < desc.length; i++) {
-            images.get(i).setDescription(desc[i]);
-            images.get(i).setTitre(titre[i]);
-            images.get(i).setDateCreation(LocalDate.now().toString());
-            images.get(i).setDateMAJ(LocalDate.now().toString());
-            images.get(i).setHauteur(100);
-            images.get(i).setLargeur(100);
-        }
-
-
-        request.setAttribute("listeImage", images);
-
-        if (addAlbumForm.add()){
-            response.sendRedirect(request.getContextPath()+"/Albums");
-        }
-*/
 
 
     }

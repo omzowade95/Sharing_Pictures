@@ -1,5 +1,4 @@
 
-<c:set var="APP_ROOT" value="/Sharing_Pictures"></c:set>
 
 
 <head>
@@ -58,7 +57,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Information sur L'image</h4>
+                        <h5 class="modal-title">Information sur L'image</h5>
                     </div>
 
                     <div class="modal-body">
@@ -72,28 +71,28 @@
 
                         <div id="popup1" class="overlay">
                             <div class="popup">
-                                <h3>Album info</h3>
+                                <h4>Album info</h4>
                                 <a class="close" href="#">&times;</a>
                                 <div class="content">
-                                    Nom : <h4><c:out value="${requestScope.listeImg.get(index).album.nom}"/></h4><br>
-                                    Theme : <h4><c:out value="${requestScope.listeImg.get(index).album.theme.libelle}"/></h4><br>
-                                    Status : <h4><c:out value="${requestScope.listeImg.get(index).album.status}"/></h4><br>
-                                    Date creation : <h4><c:out value="${requestScope.listeImg.get(index).album.date}"/></h4><br>
-                                    Proprietaire :<h4><c:out value="${requestScope.listeImg.get(index).album.utilisateur.username}"/></h4>
+                                    <h6>Nom : <c:out value="${requestScope.listeImg.get(index).album.nom}"/></h6>
+                                     <h6>Theme :<c:out value="${requestScope.listeImg.get(index).album.theme.libelle}"/></h6>
+                                     <h6>Status : <c:out value="${requestScope.listeImg.get(index).album.status}"/></h6>
+                                    <h6>Date creation : <c:out value="${requestScope.listeImg.get(index).album.date}"/></h6>
+                                   <h6> Proprietaire :<c:out value="${requestScope.listeImg.get(index).album.utilisateur.username}"/></h6>
                                 </div>
                             </div>
                         </div>
 
                         <div id="popup2" class="overlay">
                             <div class="popup">
-                                <h3>Image Info</h3>
+                                <h4>Image Info</h4>
                                 <a class="close" href="#">&times;</a>
                                 <div class="content">
-                                    Titre : <h4><c:out value="${requestScope.listeImg.get(index).titre}"/></h4><br>
-                                    Description : <h4><c:out value="${requestScope.listeImg.get(index).description}"/></h4><br>
-                                    Date Creation :  <h4><c:out value="${requestScope.listeImg.get(index).dateCreation}"/></h4><br>
-                                    Largeur :  <h4><c:out value="${requestScope.listeImg.get(index).largeur}"/></h4><br>
-                                    Hauteur : <h4><c:out value="${requestScope.listeImg.get(index).hauteur}"/></h4>                                                </div>
+                                    <h6>Titre : <c:out value="${requestScope.listeImg.get(index).titre}"/></h6>
+                                    <h6>Description : <c:out value="${requestScope.listeImg.get(index).description}"/></h6>
+                                    <h6>Date Creation :  <c:out value="${requestScope.listeImg.get(index).dateCreation}"/></h6>
+                                    <h6>Largeur :  <c:out value="${requestScope.listeImg.get(index).largeur}"/></h6>
+                                    <h6>Hauteur : <c:out value="${requestScope.listeImg.get(index).hauteur}"/></h6>                                                </div>
                             </div>
                         </div>
                     </div>
