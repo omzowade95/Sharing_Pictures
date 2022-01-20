@@ -42,10 +42,11 @@ public class Test {
 
             UtilisateurDAO ud = new UtilisateurDAO(entityManager);
             Utilisateur u = new Utilisateur("Balde","blandine","blanblan","passer",roleA);
-            Utilisateur u2 = new Utilisateur("Balde","blandine","blanblan2","passer",roleB);
+            Utilisateur u2 = new Utilisateur("Gueye","Kine","Kine","passer",roleB);
 
-            //ud.addUser(u,entityManager);
-            //ud.addUser(u2,entityManager);
+            ud.addUser(u);
+            ud.addUser(u2);
+
 
         }catch (Exception e){
 

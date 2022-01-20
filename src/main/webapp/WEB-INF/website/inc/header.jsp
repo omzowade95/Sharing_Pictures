@@ -26,6 +26,7 @@
         <a class="${ activeAbout == true ? 'active' : ''}" href="<c:url value="/About"/>">A propos de nous</a>
         <c:choose>
             <c:when test="${!empty user}">
+                <a href="<c:url value="/Albums/myAlbum" />">Mes albums</a>
                 <a href="<c:url value="/logout" />">Déconnexion</a>
             </c:when>
             <c:otherwise>

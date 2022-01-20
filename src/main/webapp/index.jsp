@@ -1,4 +1,20 @@
-<%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8" %>
+
+<head>
+    <title>SP | Acceuil</title>
+    <link rel="stylesheet" href="<c:url value="/css/popup.css" />">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+</head>
 
 <!-- header section starts      -->
 <c:import url="WEB-INF/website/inc/header.jsp"/>
@@ -14,262 +30,140 @@
 <!-- home section starts  -->
 
 <section class="home" id="home">
-
     <div class="swiper-container home-slider">
 
         <div class="swiper-wrapper wrapper">
 
             <div class="swiper-slide slide">
                 <div class="content">
-                    <span>PhotoLab la vision du monde</span>
-                    <h3>Bienvenue sur PhotoLab.</h3>
-                    <p>PhotoLab est une plateforme de partage de photos en ligne</p>
-                    <a href="#" class="btn">Débutez maintenant</a>
+                    <span>Partager vos meuilleur recettes</span>
+                    <h3>spicy noodles</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
                 </div>
                 <div class="image">
-                    <img src="images/presentattion1.jpg" alt="">
+                    <img src="images/home-img-1.png" alt="">
                 </div>
             </div>
 
             <div class="swiper-slide slide">
                 <div class="content">
-                    <span>Voir le monde autrement.</span>
-                    <h3>PhotoLab.</h3>
-                    <p>Voyagez avec vos amis en partageant en temps reel vos albums et photos</p>
-                    <a href="#" class="btn">Debutez maintenant</a>
+                    <span>Partager vos meuilleur plat</span>
+                    <h3>fried chicken</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
                 </div>
                 <div class="image">
-                    <img src="images/presentattion1.jpg" alt="">
+                    <img src="images/home-img-2.png" alt="">
                 </div>
             </div>
 
-
+            <div class="swiper-slide slide">
+                <div class="content">
+                    <span>Partager vos meilleur moment</span>
+                    <h3>hot pizza</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque?</p>
+                </div>
+                <div class="image">
+                    <img src="images/home-img-3.png" alt="">
+                </div>
+            </div>
 
         </div>
 
         <div class="swiper-pagination"></div>
 
     </div>
-
 </section>
 
 <!-- home section ends -->
 
 <!-- dishes section starts  -->
-<section class="dishes" id="photos">
+<c:choose>
+    <c:when test="${!empty sessionScope.user}">
+        <a class="btn" href="<c:url value="/Albums"/>">Voir les albums</a>
+    </c:when>
+    <c:otherwise>
+        <section class="dishes" id="photos">
 
-    <h3 class="sub-heading"> PHOTOS </h3>
-    <h1 class="heading"> photos recentes publiees</h1>
+            <div class="box-container">
 
-    <div class="box-container">
+                <c:choose>
+                    <c:when test="${!empty requestScope.listeImgpub}">
+                        <c:forEach items="${requestScope.listeImgpub}"  var="album">
+                            <div class="box">
+                                <a id="idImage" href="#myModal" data-toggle="modal" data-target="#myModal" onclick=""/>
+                                <img   id="photo" src="data:image/png;base64,${album.base64Image} " width="100px" height="100px" />
+                                </a>
+                            </div>
+                        </c:forEach>
 
-        <div class="box">
-            <%--<a href="#" class="fas fa-heart"></a>--%>
+                    </c:when>
+                    <c:otherwise>
+                        <h1>No photo to show</h1>
+                    </c:otherwise>
+                </c:choose>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h5> class="modal-title">Information sur L'image</h5>
+                            </div>
 
-            <img src="images/dish-1.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
+                            <div class="modal-body">
+                                <img id="photpop" src="data:image/png;base64,${requestScope.listeImgpub.get(index).base64Image} " width="100px" height="100px" />
 
-                <span>Date photo</span>
+                                <div>
+                                    Nom album :<a class="button" href="#popup1"><c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></a>
+                                    <br>
+                                    Nom image : <a class="button" href="#popup2"><c:out value="${requestScope.listeImgpub.get(index).titre}"/></a>
+                                </div>
+
+                                <div id="popup1" class="overlay">
+                                    <div class="popup">
+                                        <h4>Album info</h4>
+                                        <a class="close" href="#">&times;</a>
+                                        <div class="content">
+                                            <h6>Nom : <c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></h6>
+                                            <h6>Theme :<c:out value="${requestScope.listeImgpub.get(index).album.theme.libelle}"/></h6>
+                                            <h6>Status : <c:out value="${requestScope.listeImgpub.get(index).album.status}"/></h6>
+                                            <h6>Date creation : <c:out value="${requestScope.listeImgpub.get(index).album.date}"/></h6>
+                                            <h6> Proprietaire :<c:out value="${requestScope.listeImgpub.get(index).album.utilisateur.username}"/></h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="popup2" class="overlay">
+                                    <div class="popup">
+                                        <h4>Image Info</h4>
+                                        <a class="close" href="#">&times;</a>
+                                        <div class="content">
+                                            <h6>Titre : <c:out value="${requestScope.listeImgpub.get(index).titre}"/></h6>
+                                            <h6>Description : <c:out value="${requestScope.listeImgpub.get(index).description}"/></h6>
+                                            <h6>Date Creation :  <c:out value="${requestScope.listeImgpub.get(index).dateCreation}"/></h6>
+                                            <h6>Largeur :  <c:out value="${requestScope.listeImgpub.get(index).largeur}"/>px</h6>
+                                            <h6>Hauteur : <c:out value="${requestScope.listeImgpub.get(index).hauteur}"/>px</h6>                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
             </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
+        </section>
 
-        <div class="box">
-            <img src="images/dish-2.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-3.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-4.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-5.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-        <div class="box">
-            <img src="images/dish-6.png" alt="">
-            <h3>tasty food</h3>
-            <div class="stars">
-                <span>Date photo</span>
-            </div>
-            <a href="#" class="btn">Consulter</a>
-        </div>
-
-
-    </div>
-    <a href="<c:url value="/photos"/> " class="btn">Consulter toutes les photos</a>
-</section>
+    </c:otherwise>
+</c:choose>
 
 <!-- dishes section ends -->
 <!-- menu section starts  -->
-
-<section class="menu" id="albums">
-
-    <h3 class="sub-heading"> ALBUMS </h3>
-    <h1 class="heading"> Les Albums recents </h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/menu-1.jpg" alt="">
-            </div>
-            <div class="content">
-                <div class="stars">
-
-                </div>
-                <h3>ALbum Titre</h3>
-                <p>description album.</p>
-                <a href="#" class="btn">Consulter</a>
-
-            </div>
-        </div>
-
-
-
-
-
-    </div>
-    <a href="<c:url value="/albums"/> " class="btn">Consulter tous les albums</a>
-</section>
-
-<!-- menu section ends -->
-
-<!-- about section starts  -->
 
 <section class="about" id="about">
 

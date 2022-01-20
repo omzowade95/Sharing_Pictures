@@ -22,7 +22,7 @@
 <section class="dishes" id="photos">
         <h3 class="txt">Ajouter un nouveau album</h3>
                     <div class="card">
-                        <form class="row g-3" method="post" action="<c:url value="/Albums/add" />" enctype="multipart/form-data">
+                        <form name="formAlb" class="row g-3" novalidate method="post" action="<c:url value="/Albums/add" />" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="theme" class="form-label">Theme</label>
                                 <input required class="form-control" id = "theme" list="datalistOptions" name="theme" placeholder="">
@@ -58,7 +58,7 @@
                             </div>
 
                             <div id="authorisationAlbum" class="collapse">
-                                <input required id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
+                                <input  id="searchInput" type="text" placeholder="Rechercher un ami à autoriser"/><button type="button" class="btn btn-success" id="searchUser">Ajouter</button>
                                 <br/>
                                 <hr/>
                                 <h6 id="userNotFound" style="color: red"></h6>
@@ -93,7 +93,7 @@
                                 <input type="hidden" name="autorisations" id="autorisations"/>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Ajouter album</button>
+                                <button name="loadAlbum" id="loadAlbum" type="submit" class="btn btn-primary">Ajouter album</button>
                             </div>
 
 

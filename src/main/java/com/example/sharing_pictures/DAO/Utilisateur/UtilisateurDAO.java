@@ -58,8 +58,10 @@ public class UtilisateurDAO implements IUtilisateur {
     }
     @Override
     public Utilisateur getUser(int id) {
+        entityManager.getTransaction().begin();
         Utilisateur user = null;
         user = entityManager.find(Utilisateur.class,id);
+        entityManager.getTransaction().commit();
         return user;
     }
 

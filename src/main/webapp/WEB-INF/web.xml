@@ -21,6 +21,6 @@
 
     <context-param>
         <param-name>directory</param-name>
-        <param-value>C:/Users/User/Documents/COURS ESP/semestre 3/javaEE/pp/Sharing_Pictures/src/main/webapp/Image</param-value>
+        <param-value>/Users/fatoudiopwade/Desktop/Sharing_Pictures/src/main/webapp/Image</param-value>
     </context-param>
 </web-app>
