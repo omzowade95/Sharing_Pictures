@@ -39,74 +39,74 @@
             <c:when test="${!empty requestScope.listeImg}">
                 <c:forEach items="${requestScope.listeImg}"  var="album">
                     <div class="box">
-                        <button   data-toggle="modal" data-target="#myModal">
-                            <img id="photo" src="data:image/png;base64,${album.base64Image} " width="100px" height="100px" />
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Information sur L'image</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <img id="photpop" src="data:image/png;base64,${album.base64Image} " width="100px" height="100px" />
-
-                                        <div>
-                                            Nom album :<a class="button" href="#popup1"><c:out value="${album.album.nom}"/></a>
-                                            <br>
-                                           Nom image : <a class="button" href="#popup2"><c:out value="${album.titre}"/></a>
-                                        </div>
-
-                                        <div id="popup1" class="overlay">
-                                            <div class="popup">
-                                                <h2>Album info</h2>
-                                                <a class="close" href="#">&times;</a>
-                                                <div class="content">
-                                                   Nom : <h4><c:out value="${album.album.nom}"/></h4><br>
-                                                    Theme :<h4><c:out value="${album.album.theme.libelle}"/></h4><br>
-                                                   Status : <h4><c:out value="${album.album.status}"/></h4><br>
-                                                   Date creation : <h4><c:out value="${album.album.date}"/></h4><br>
-                                                    Proprietaire<h4><c:out value="${album.album.utilisateur.username}"/></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id="popup2" class="overlay">
-                                            <div class="popup">
-                                                <h2>Image Info</h2>
-                                                <a class="close" href="#">&times;</a>
-                                                <div class="content">
-                                                    Titre : <h4><c:out value="${album.titre}"/></h4><br>
-                                                    Description :<h4><c:out value="${album.description}"/></h4><br>
-                                                    Date Creation : <h4><c:out value="${album.dateCreation}"/></h4><br>
-                                                    Largeur : <h4><c:out value="${album.largeur}"/></h4><br>
-                                                    Hauteur :<h4><c:out value="${album.hauteur}"/></h4>                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
+                        <a id="idImage" href="#myModal" data-toggle="modal" data-target="#myModal" onclick=""/>
+                            <img   id="photo" src="data:image/png;base64,${album.base64Image} " width="100px" height="100px" />
+                        </a>
                     </div>
-
                 </c:forEach>
+
             </c:when>
             <c:otherwise>
                 <h1>No photo in this album </h1>
             </c:otherwise>
         </c:choose>
+
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Information sur L'image</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <img id="photpop" src="data:image/png;base64,${requestScope.listeImg.get(index).base64Image} " width="100px" height="100px" />
+
+                        <div>
+                            Nom album :<a class="button" href="#popup1"><c:out value="${requestScope.listeImg.get(index).album.nom}"/></a>
+                            <br>
+                            Nom image : <a class="button" href="#popup2"><c:out value="${requestScope.listeImg.get(index).titre}"/></a>
+                        </div>
+
+                        <div id="popup1" class="overlay">
+                            <div class="popup">
+                                <h3>Album info</h3>
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    Nom : <h4><c:out value="${requestScope.listeImg.get(index).album.nom}"/></h4><br>
+                                    Theme : <h4><c:out value="${requestScope.listeImg.get(index).album.theme.libelle}"/></h4><br>
+                                    Status : <h4><c:out value="${requestScope.listeImg.get(index).album.status}"/></h4><br>
+                                    Date creation : <h4><c:out value="${requestScope.listeImg.get(index).album.date}"/></h4><br>
+                                    Proprietaire :<h4><c:out value="${requestScope.listeImg.get(index).album.utilisateur.username}"/></h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="popup2" class="overlay">
+                            <div class="popup">
+                                <h3>Image Info</h3>
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    Titre : <h4><c:out value="${requestScope.listeImg.get(index).titre}"/></h4><br>
+                                    Description : <h4><c:out value="${requestScope.listeImg.get(index).description}"/></h4><br>
+                                    Date Creation :  <h4><c:out value="${requestScope.listeImg.get(index).dateCreation}"/></h4><br>
+                                    Largeur :  <h4><c:out value="${requestScope.listeImg.get(index).largeur}"/></h4><br>
+                                    Hauteur : <h4><c:out value="${requestScope.listeImg.get(index).hauteur}"/></h4>                                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
 
 </section>
