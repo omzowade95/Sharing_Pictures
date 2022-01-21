@@ -57,12 +57,14 @@ public class HomeController extends HttpServlet {
 
 
             request.setAttribute("listeImgpub",imageList);
-            request.getRequestDispatcher(HOME_VUE).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
         }
+
+        request.getRequestDispatcher(HOME_VUE).forward(request, response);
+
     }
 }
