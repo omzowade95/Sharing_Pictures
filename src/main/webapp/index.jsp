@@ -101,61 +101,64 @@
                         <h1>No photo to show</h1>
                     </c:otherwise>
                 </c:choose>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h5> class="modal-title">Information sur L'image</h5>
-                            </div>
 
-                            <div class="modal-body">
-                                <img id="photpop" src="data:image/png;base64,${requestScope.listeImgpub.get(index).base64Image} " width="100px" height="100px" />
+                <c:choose>
+                    <c:when test="${!empty requestScope.listeImgpub}">
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h5> class="modal-title">Information sur L'image</h5>
+                                    </div>
 
-                                <div>
-                                    Nom album :<a class="button" href="#popup1"><c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></a>
-                                    <br>
-                                    Nom image : <a class="button" href="#popup2"><c:out value="${requestScope.listeImgpub.get(index).titre}"/></a>
-                                </div>
+                                    <div class="modal-body">
+                                        <img id="photpop" src="data:image/png;base64,${requestScope.listeImgpub.get(index).base64Image} " width="100px" height="100px" />
 
-                                <div id="popup1" class="overlay">
-                                    <div class="popup">
-                                        <h4>Album info</h4>
-                                        <a class="close" href="#">&times;</a>
-                                        <div class="content">
-                                            <h6>Nom : <c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></h6>
-                                            <h6>Theme :<c:out value="${requestScope.listeImgpub.get(index).album.theme.libelle}"/></h6>
-                                            <h6>Status : <c:out value="${requestScope.listeImgpub.get(index).album.status}"/></h6>
-                                            <h6>Date creation : <c:out value="${requestScope.listeImgpub.get(index).album.date}"/></h6>
-                                            <h6> Proprietaire :<c:out value="${requestScope.listeImgpub.get(index).album.utilisateur.username}"/></h6>
+                                        <div>
+                                            Nom album :<a class="button" href="#popup1"><c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></a>
+                                            <br>
+                                            Nom image : <a class="button" href="#popup2"><c:out value="${requestScope.listeImgpub.get(index).titre}"/></a>
+                                        </div>
+
+                                        <div id="popup1" class="overlay">
+                                            <div class="popup">
+                                                <h4>Album info</h4>
+                                                <a class="close" href="#">&times;</a>
+                                                <div class="content">
+                                                    <h6>Nom : <c:out value="${requestScope.listeImgpub.get(index).album.nom}"/></h6>
+                                                    <h6>Theme :<c:out value="${requestScope.listeImgpub.get(index).album.theme.libelle}"/></h6>
+                                                    <h6>Status : <c:out value="${requestScope.listeImgpub.get(index).album.status}"/></h6>
+                                                    <h6>Date creation : <c:out value="${requestScope.listeImgpub.get(index).album.date}"/></h6>
+                                                    <h6> Proprietaire :<c:out value="${requestScope.listeImgpub.get(index).album.utilisateur.username}"/></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="popup2" class="overlay">
+                                            <div class="popup">
+                                                <h4>Image Info</h4>
+                                                <a class="close" href="#">&times;</a>
+                                                <div class="content">
+                                                    <h6>Titre : <c:out value="${requestScope.listeImgpub.get(index).titre}"/></h6>
+                                                    <h6>Description : <c:out value="${requestScope.listeImgpub.get(index).description}"/></h6>
+                                                    <h6>Date Creation :  <c:out value="${requestScope.listeImgpub.get(index).dateCreation}"/></h6>
+                                                    <h6>Largeur :  <c:out value="${requestScope.listeImgpub.get(index).largeur}"/>px</h6>
+                                                    <h6>Hauteur : <c:out value="${requestScope.listeImgpub.get(index).hauteur}"/>px</h6>                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div id="popup2" class="overlay">
-                                    <div class="popup">
-                                        <h4>Image Info</h4>
-                                        <a class="close" href="#">&times;</a>
-                                        <div class="content">
-                                            <h6>Titre : <c:out value="${requestScope.listeImgpub.get(index).titre}"/></h6>
-                                            <h6>Description : <c:out value="${requestScope.listeImgpub.get(index).description}"/></h6>
-                                            <h6>Date Creation :  <c:out value="${requestScope.listeImgpub.get(index).dateCreation}"/></h6>
-                                            <h6>Largeur :  <c:out value="${requestScope.listeImgpub.get(index).largeur}"/>px</h6>
-                                            <h6>Hauteur : <c:out value="${requestScope.listeImgpub.get(index).hauteur}"/>px</h6>                                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
                             </div>
                         </div>
 
-                    </div>
-                </div>
-
-
-
+                    </c:when>
+                </c:choose>
             </div>
         </section>
 
