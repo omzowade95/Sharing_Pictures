@@ -159,10 +159,7 @@
                         <input type="password" class="form-control" name="pass" required>
                     </div>
                     <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" class="form-control" name="passConfirm" required>
-                    </div>
-                    <div class="form-group">
+                        <label>Status</label>
                         <select name="role" >
                             <option value="1">ADMIN</option>
                             <option value="2">USER</option>

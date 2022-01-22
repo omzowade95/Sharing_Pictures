@@ -11,3 +11,6 @@ Recupére le pull de la branche **`blandine`**
 3-Changer le chemin "C:\Users\User\Documents\COURS ESP\semestre 3\javaEE\pp\Sharing_Pictures\src\main\webapp\Image" par le chemin de votre dossier Image
 
 4-Lancer en **application console** `Test.java` qui se trouve dans src/main/java/testJPA.
+
+
+lien vers la video de presentation https://drive.google.com/file/d/11lbDAoTaneqqeeqhvbMCzE6zWmStCVcY/view?usp=sharing

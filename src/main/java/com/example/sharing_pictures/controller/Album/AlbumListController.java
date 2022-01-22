@@ -56,10 +56,12 @@ public class AlbumListController extends HttpServlet {
             if (u != null){
                 AuthorisationDAO authorisationDAO = new AuthorisationDAO(entityManager);
                 List<Authorisation> auth = authorisationDAO.listeAuth(u.getId());
-                for (Authorisation a: auth) {
-                    albumList.add(a.getAlbum());
-                }
+                if (auth != null) {
+                    for (Authorisation a : auth) {
 
+                        albumList.add(a.getAlbum());
+                    }
+                }
             }
 
 
