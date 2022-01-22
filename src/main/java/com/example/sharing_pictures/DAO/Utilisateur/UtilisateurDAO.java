@@ -4,6 +4,8 @@ import com.example.sharing_pictures.model.Role;
 import com.example.sharing_pictures.model.Utilisateur;
 
 import javax.persistence.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,24 @@ public class UtilisateurDAO implements IUtilisateur {
     }
 
     @Override
-    public boolean updateUser(UtilisateurDAO utilisateurDAO) {
-        return false;
+    public boolean updateUser(Utilisateur utilisateur , int id) {
+        entityManager.getTransaction().begin();
+
+        try {
+            Utilisateur utilisateur1 = entityManager.find(Utilisateur.class,id);
+            if (utilisateur1 != null){
+                utilisateur1.setNom(utilisateur.getNom());
+                utilisateur1.setPrenom((utilisateur.getPrenom()));
+                utilisateur1.setUsername(utilisateur.getUsername());
+                utilisateur1.setPassword(utilisateur.getPassword());
+                utilisateur1.setRole(utilisateur.getRole());
+            }
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

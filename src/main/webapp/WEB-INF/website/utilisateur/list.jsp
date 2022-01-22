@@ -24,7 +24,7 @@
                         <h2>Gestion <b>Utilisateurs</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajout Utilisateur </span></a>
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal" ><i class="material-icons">&#xE147;</i> <span>Ajout Utilisateur </span></a>
                         <a href="<c:url value="/" />"class=" btn btn-info home" ><i class="bi bi-arrow-bar-left"></i><span>Page D'accueil</span></a>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                             <td><c:out value="${ utilisateur.prenom }"/></td>
                             <td><c:out value="${ utilisateur.username }"/></td>
                             <td><c:out value="${ utilisateur.password }"/></td>
-                            <td><c:out value="${ utilisateur.id }"/></td>
+                            <td><c:out value="${ utilisateur.role.role }"/></td>
 
                             <td>
-                                <a href="#editEmployeeModal?id=${utilisateur.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#editEmployeeModal" data-id="${utilisateur.id}" data-nom="${utilisateur.nom}" data-prenom="${utilisateur.prenom}" data-username="${utilisateur.username}" data-role="${utilisateur.role.role}"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="<c:url value="/deleteUser?id=${utilisateur.id}" />" class="delete" onclick="return confirmer()"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
@@ -100,7 +100,7 @@
                         <input type="text" class="form-control" name="nom" required>
                     </div>
                     <div class="form-group">
-                        <label>Prenom</label>
+                        <label>Prénom</label>
                         <input type="text" class="form-control" name="prenom" required>
                     </div>
                     <div class="form-group">
@@ -109,11 +109,11 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="text" class="form-control" name="pass" required>
+                        <input type="password" class="form-control" name="pass" required>
                     </div>
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="text" class="form-control" name="passConfirm" required>
+                        <input type="password" class="form-control" name="passConfirm" required>
                     </div>
                     <div class="form-group">
                         <select name="role" id="select-id" >
@@ -132,7 +132,51 @@
 </div>
 
 <!-- Edit Modal HTML -->
-
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="<c:url value="/updateUser" />">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modifier Utilisateur</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="idHide">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Prénom</label>
+                        <input type="text" class="form-control" name="prenom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="pass" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name="passConfirm" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="role" >
+                            <option value="1">ADMIN</option>
+                            <option value="2">USER</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-info" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="<c:url value="/js/scriptGesUsers.js"/>"></script>
 </body>
