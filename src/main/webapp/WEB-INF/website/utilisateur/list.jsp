@@ -24,8 +24,8 @@
                         <h2>Gestion <b>Utilisateurs</b></h2>
                     </div>
                     <div class="col-sm-6">
-                        <a href="add.html#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajout Utilisateur </span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajout Utilisateur </span></a>
+                        <a href="<c:url value="/" />"class=" btn btn-info home" ><i class="bi bi-arrow-bar-left"></i><span>Page D'accueil</span></a>
                     </div>
                 </div>
             </div>
@@ -59,11 +59,11 @@
                             <td><c:out value="${ utilisateur.prenom }"/></td>
                             <td><c:out value="${ utilisateur.username }"/></td>
                             <td><c:out value="${ utilisateur.password }"/></td>
-                            <td><c:out value="${ utilisateur.role.role }"/></td>
+                            <td><c:out value="${ utilisateur.id }"/></td>
 
                             <td>
-                                <a href="update.html#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="#editEmployeeModal?id=${utilisateur.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="<c:url value="/deleteUser?id=${utilisateur.id}" />" class="delete" onclick="return confirmer()"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -86,30 +86,53 @@
 </div>
 <!-- Edit Modal HTML -->
 
-<!-- Edit Modal HTML -->
-
-<!-- Delete Modal HTML -->
-
-<div id="deleteEmployeeModal" class="modal fade">
+<div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form action="<c:url value="/addUser" />" method="post">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Employee</h4>
+                    <h4 class="modal-title">Ajout Utilisateur</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete these Records?</p>
-                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Prenom</label>
+                        <input type="text" class="form-control" name="prenom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control" name="pass" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="text" class="form-control" name="passConfirm" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="role" id="select-id" >
+                            <option value="1">ADMIN</option>
+                            <option value="2">USER</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-danger" value="Delete">
+                    <input type="submit" class="btn btn-success" value="Add">
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- Edit Modal HTML -->
+
 
 <script type="text/javascript" src="<c:url value="/js/scriptGesUsers.js"/>"></script>
 </body>

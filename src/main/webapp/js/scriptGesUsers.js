@@ -21,3 +21,11 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function confirmer(){
+	var res = confirm("Etes-vous sûr de vouloir supprimer ?")
+	if (res)
+		return true;
+	else
+		return false;
+}
