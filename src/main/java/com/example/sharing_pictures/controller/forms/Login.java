@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AuthenticationForm authenticationForm = new AuthenticationForm(request);
         if (authenticationForm.userAuth()) {
-            response.sendRedirect(request.getContextPath() + "/");
+            getServletContext().getRequestDispatcher(HOME_VUE).forward(request,response);
         }else{
              erreur = "Login ou mode passe incorrect ";
             request.getServletContext().setAttribute("erreur",erreur);

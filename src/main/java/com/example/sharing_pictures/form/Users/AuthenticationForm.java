@@ -45,7 +45,7 @@ public class AuthenticationForm {
                     setParameter("username",username)
                     .getSingleResult();
             entityManager.getTransaction().commit();
-
+            System.out.println(utilisateur.getRole());
         }catch (NoResultException e){
             if (username.equals("ADMIN") && password.equals("ADMIN")){
                 return  true;

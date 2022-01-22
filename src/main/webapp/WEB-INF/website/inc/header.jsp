@@ -21,12 +21,14 @@
 
     <nav class="navbar">
         <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>">Accueil</a>
-        <a class="${ activeAlbum == true ? 'active' : ''}" href="<c:url value="/Albums"/>">Albums</a>
         <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>">Photos</a>
         <a class="${ activeAbout == true ? 'active' : ''}" href="<c:url value="/About"/>">A propos de nous</a>
         <c:choose>
             <c:when test="${!empty user}">
                 <a href="<c:url value="/Albums/myAlbum" />">Mes albums</a>
+                <c:if test="${ user.role.role == 'ADMIN' }" >
+                    <a href="<c:url value="/listUser" />">Utilisateurs</a>
+                </c:if>
                 <a href="<c:url value="/logout" />">Déconnexion</a>
             </c:when>
             <c:otherwise>
