@@ -63,9 +63,11 @@ public class AddAlbumForm {
 
             Album a = new Album(nom,LocalDate.now().toString(),status,(Utilisateur)session.getAttribute("user"),theme);
             albumDAO.add(a);
-            for (Image img: images) {
-                img.setAlbum(a);
-                imageDAO.add(img);
+            if (images != null) {
+                for (Image img: images) {
+                    img.setAlbum(a);
+                    imageDAO.add(img);
+                }
             }
 
             if (status.toString().equals("PRIVATE")){
@@ -78,8 +80,6 @@ public class AddAlbumForm {
                         at.setCode(code);
                         authorisationDAO.add(at);
                     }
-
-
 
             }
             bool = true;

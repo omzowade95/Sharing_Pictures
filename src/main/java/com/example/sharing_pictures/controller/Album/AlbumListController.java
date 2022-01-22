@@ -62,11 +62,6 @@ public class AlbumListController extends HttpServlet {
 
             }
 
-                for (Album a : albumList) {
-                   imageAlb.add( album.listeImageFromAlbum(a.getId()).get(0));
-                }
-
-
 
             request.setAttribute("listAlbum", albumList);
             request.setAttribute("listImage", imageAlb);

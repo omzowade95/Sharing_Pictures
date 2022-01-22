@@ -39,7 +39,6 @@ public class UtilisateurDAO implements IUtilisateur {
                 utilisateur1.setRole(utilisateur.getRole());
             }
             entityManager.getTransaction().commit();
-            entityManager.close();
             return true;
         }catch (Exception e){
             return false;
@@ -98,11 +97,9 @@ public class UtilisateurDAO implements IUtilisateur {
                // System.out.println("Utilisateur: " + utilisateur.getPrenom());
 
                 entityManager.getTransaction().commit();
-                entityManager.close();
             }catch (NoResultException e){
                 e.printStackTrace();
             }
-
 
             return utilisateurs;
 

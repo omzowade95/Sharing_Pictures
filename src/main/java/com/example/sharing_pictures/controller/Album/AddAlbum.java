@@ -71,12 +71,10 @@ public class AddAlbum  extends HttpServlet {
                         utilisateurList.add(user);
                     }
                 }
+
             }
 
-            for (Utilisateur u : utilisateurList) {
-                System.out.println(u);
-                System.out.println("list");
-            }
+
             request.setAttribute("utilisateurAuthoriser", utilisateurList);
 
 
@@ -104,7 +102,7 @@ public class AddAlbum  extends HttpServlet {
             request.setAttribute("listeImage", images);
 
             if (addAlbumForm.add()) {
-                response.sendRedirect(request.getContextPath() + "/Albums");
+                response.sendRedirect(request.getContextPath() + "/Albums/myAlbum");
             } else {
                 response.sendRedirect(request.getContextPath() + "/Albums/add");
 

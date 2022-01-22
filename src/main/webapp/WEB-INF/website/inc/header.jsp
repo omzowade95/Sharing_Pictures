@@ -21,7 +21,7 @@
 
     <nav class="navbar">
         <a class="${ activeLogin == true ? 'active' : ''}" href="<c:url value="/"/>">Accueil</a>
-        <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/photos"/>">Photos</a>
+        <a class="${ activePhoto == true ? 'active' : ''}" href="<c:url value="/Albums"/>">Albums</a>
         <a class="${ activeAbout == true ? 'active' : ''}" href="<c:url value="/About"/>">A propos de nous</a>
         <c:choose>
             <c:when test="${!empty user}">

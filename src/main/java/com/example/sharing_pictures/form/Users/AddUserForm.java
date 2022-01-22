@@ -41,7 +41,7 @@ public class AddUserForm {
             entityManagerFactory = Persistence.createEntityManagerFactory("sharing_pictures");
             entityManager = entityManagerFactory.createEntityManager();
             utilisateurDAO = new UtilisateurDAO(entityManager);
-            Role role = entityManager.find(Role.class,Integer.parseInt(role_name));
+            Role role = entityManager.find(Role.class,2);
             utilisateur = new Utilisateur(nom,prenom,username,password,role);
 
             if(utilisateurDAO.searchUsername(username))
